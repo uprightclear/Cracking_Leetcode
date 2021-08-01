@@ -25,6 +25,7 @@ class Solution {
 class Solution {
     public int[] kWeakestRows(int[][] mat, int k) {
         int m = mat.length, n = mat[0].length;
+        //堆顶元素为战力最大的数对
         PriorityQueue<int[]> q = new PriorityQueue<>((a,b)->{
             if (a[0] != b[0]) return b[0] - a[0];
             return b[1] - a[1];
@@ -36,7 +37,7 @@ class Solution {
                 if (mat[i][mid] >= 1) l = mid;
                 else r = mid - 1;
             }
-            int cur = mat[i][r] >= 1 ? r + 1 : r;
+            int cur = mat[i][r] == 1 ? r + 1 : r;
             if (q.size() == k && q.peek()[0] > cur) q.poll();
             if (q.size() < k) q.add(new int[]{cur, i});
         }
