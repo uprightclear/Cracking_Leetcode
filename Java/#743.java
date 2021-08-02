@@ -18,7 +18,7 @@ class Solution {
         boolean[] used = new boolean[n];
         for (int i = 0; i < n; ++i) {
             int x = -1;
-            //从未确定节点中取一个与起点距离最短的点x
+            //从未确定节点中取一个与起点距离最短的点
             for (int y = 0; y < n; ++y) {
                 if (!used[y] && (x == -1 || dist[y] < dist[x])) {
                     x = y;
@@ -35,7 +35,7 @@ class Solution {
     }
 }
 
-
+//堆优化
 class Solution {
     public int networkDelayTime(int[][] times, int n, int k) {
         int max = 0x3f3f3f3f;
