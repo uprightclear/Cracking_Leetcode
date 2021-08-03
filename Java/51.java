@@ -33,7 +33,7 @@ class Solution {
             return;
         }
 
-        // 针对下标为 row 的每一列，尝试是否可以放置
+        // 针对下标为 row 的每一列，尝试是否可以放置（main：右上到左下↙ sub：左上到右下↘）
         for (int j = 0; j < n; j++) {
             if (!col[j] && !main[row + j] && !sub[row - j + n - 1]) {
                 path.addLast(j);
