@@ -32,8 +32,8 @@ class Solution {
         Arrays.sort(nums);
         int ans = 0;
         for (int i = 0; i < n; ++i) {
-            int k = i;
             for (int j = i + 1; j < n; ++j) {
+                int k = j;
                 while (k + 1 < n && nums[k + 1] < nums[i] + nums[j]) {
                     ++k;
                 }
