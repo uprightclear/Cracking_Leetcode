@@ -1,5 +1,5 @@
 # Cracking_Leetcode
-leetcode solution
+leetcode solution with JAVA
 
 ## Advanced
 | Id  | Name                         | Difficulty | Similar Problems |      |     |     |     |     | Comments         |
