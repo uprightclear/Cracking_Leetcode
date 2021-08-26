@@ -1,3 +1,4 @@
+//sort + greedy
 class Solution {
     public int numRescueBoats(int[] people, int limit) {
         int ans = 0;
