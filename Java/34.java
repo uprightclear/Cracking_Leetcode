@@ -49,6 +49,7 @@ class Solution {
             ans[0] = l;
             l = 0; r = n - 1;
             while (l < r) {
+                //因为在找有边界，l + r + 1确保取中间值时取到的是更大值（偶数时取的是第二个mid）
                 int mid = l + r + 1 >> 1;
                 if (nums[mid] <= target) {
                     l = mid;
