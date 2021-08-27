@@ -66,7 +66,7 @@ public int trap(int[] height) {
     for (int i = 1; i < height.length - 1; i++) {
         max_left[i] = Math.max(max_left[i - 1], height[i - 1]);
     }
-    for (int i = height.length - 2; i >= 0; i--) {
+    for (int i = height.length - 2; i >= 1; i--) {
         max_right[i] = Math.max(max_right[i + 1], height[i + 1]);
     }
     for (int i = 1; i < height.length - 1; i++) {
