@@ -1,3 +1,4 @@
+//差分 + 前缀和
 class Solution {
     public int[] corpFlightBookings(int[][] bookings, int n) {
         int[] nums = new int[n];
