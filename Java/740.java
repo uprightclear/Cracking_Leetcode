@@ -59,7 +59,6 @@ class Solution {
         }
         int[] dp = new int[max + 1];
         dp[1] = all[1] * 1;
-        dp[2] = Math.max(dp[1], all[2] * 2);
 //      动态规划求解
         for (int i = 2; i <= max; ++i) {
             dp[i] = Math.max(dp[i - 1], dp[i - 2] + i * all[i]);
