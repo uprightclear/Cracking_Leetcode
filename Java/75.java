@@ -48,3 +48,29 @@ class Solution {
         }
     }
 }
+
+class Solution {
+    public void sortColors(int[] nums) {
+        int high = nums.length - 1;
+        int low = 0, mid = 0;
+        int pivot = 1;
+        while(mid <= high){
+            if(nums[mid] < pivot){
+                swap(nums, mid, low);
+                low++;
+                mid++;
+            }else if(nums[mid] > pivot){
+                swap(nums, mid, high);
+                high--;
+            }else{
+                mid++;
+            }
+        }
+    }
+    
+    public void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
