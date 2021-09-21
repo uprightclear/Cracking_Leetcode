@@ -40,4 +40,3 @@ public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
     // a common node down the list and both will reach their respective ends
     // at the same time. So pA will be NULL in that case.
 }
-}
