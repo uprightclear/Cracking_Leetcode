@@ -42,7 +42,7 @@ class Solution {
     public void helper(TreeNode node, int level) {
         if (level == rightside.size()) 
             rightside.add(node.val);
-        
+        //add right node firstly if right node is null then add the left node
         if (node.right != null) 
             helper(node.right, level + 1);  
         if (node.left != null) 
