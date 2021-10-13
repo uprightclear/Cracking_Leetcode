@@ -7,7 +7,7 @@ class Solution {
         for(int[] event : events) {
             for(int i = event[0]; i <= event[1]; i++) {
                 if(seen[i]) continue;
-                seen[i] = true;;
+                seen[i] = true;
                 ans++;
                 break;
             }
