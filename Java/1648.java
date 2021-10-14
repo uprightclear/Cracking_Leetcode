@@ -2,7 +2,7 @@ class Solution {
     public int maxProfit(int[] inventory, int orders) {
         Arrays.sort(inventory);
         long ans = 0;
-        int n = inventory.length-1;
+        int n = inventory.length - 1;
         long count = 1;
         while(orders > 0){
             if(n > 0 && inventory[n] - inventory[n-1] > 0 && orders >= count * (inventory[n] - inventory[n-1])){
