@@ -53,28 +53,23 @@ class Solution {
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
         Map<String, Integer> count = new HashMap<>();
-        for (String w : words) {
-            count.put(w, count.getOrDefault(w, 0) + 1);
-        }
+        for(String word : words) count.put(word, count.getOrDefault(word, 0) + 1);
         
-        List<String>[] buckets = new ArrayList[words.length];
-        for (int i = 0; i < words.length; i++) buckets[i] = new ArrayList<>();
-
-        for (String w : count.keySet()) {
-            buckets[count.get(w)].add(w);
-        }
+        List<String>[] buckets = new ArrayList[words.length + 1];
+        for(int i = 0; i <= words.length; i++) buckets[i] = new ArrayList<>();
+        
+        for(String word : count.keySet()) buckets[count.get(word)].add(word);
         
         List<String> ans = new ArrayList<>();
-        for (int i = words.length - 1; i >= 0; i--) {
-            if (buckets[i].size() == 0) continue;
+        for(int i = words.length; i >= 0; i--) {
+            if(buckets[i].size() == 0) continue;
             Collections.sort(buckets[i]);
-            for (int j = 0; j < buckets[i].size(); j++) {
+            for(int j = 0; j < buckets[i].size(); j++) {
                 ans.add(buckets[i].get(j));
-                if (ans.size() == k) break;
+                if(ans.size() == k) break;
             }
-            if (ans.size() == k) break;
+            if(ans.size() == k) break;
         }
-        
         return ans;
     }
 }
