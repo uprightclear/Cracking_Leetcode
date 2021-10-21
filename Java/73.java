@@ -1,5 +1,36 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        boolean[] row_visited = new boolean[m];
+        boolean[] col_visited = new boolean[n];
+        
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(!row_visited[i] && matrix[i][j] == 0) {//deal row
+                    row_visited[i] = true;
+                }
+                if(!col_visited[j] && matrix[i][j] == 0) {//deal col
+                    col_visited[j] = true;
+                }
+            }
+        }
+        
+        for(int i = 0; i < m; i++) {
+            if(row_visited[i] == true) {
+                for(int k = 0; k < n; k++) matrix[i][k] = 0;
+            }
+        }
+        for(int i = 0; i < n; i++) {
+            if(col_visited[i] == true) {
+                for(int k = 0; k < m; k++) matrix[k][i] = 0;
+            }
+        }
+    }
+}
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
         boolean row0_flag = false;
