@@ -29,6 +29,7 @@ class Solution {
     }
 }
 
+//space complexity o(1)
 class Solution {
     public void setZeroes(int[][] matrix) {
         int row = matrix.length;
