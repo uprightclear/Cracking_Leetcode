@@ -17,3 +17,22 @@ class Solution {
         return head.val == val ? head.next : head;
     }
 }
+
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode ans = new ListNode(0);
+        ListNode tail = ans;
+        tail.next = head;
+        
+        ListNode node = head;
+        while(node != null) {
+            if(node.val == val) {
+                tail.next = node.next;
+            } else {
+                tail = tail.next;
+            }
+            node = node.next;
+        }
+        return ans.next;
+    }
+}
