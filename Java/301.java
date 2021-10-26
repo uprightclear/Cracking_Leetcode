@@ -76,3 +76,58 @@ class Solution {
         path.deleteCharAt(path.length() - 1);
     }
 }
+
+
+class Solution {
+    int len;
+    public List<String> removeInvalidParentheses(String s) {
+        char[] cs = s.toCharArray();
+        int l = 0, r = 0;
+        for (char c : cs) {
+            if (c == '(') {
+                l++;
+            } else if (c == ')') {
+                r++;
+            }
+        }
+        int max = Math.min(l, r);
+        Set<String> all = new HashSet<>();
+        dfs(cs, 0, 0, max, "", all);
+        List<String> ans = new ArrayList<>();
+        for (String str : all) {
+            if (str.length() == len) ans.add(str);
+        }
+        return ans;
+    }
+    /**
+     * cs: 字符串 s 对应的字符数组
+     * u: 当前决策到 cs 的哪一位
+     * score: 当前决策方案的得分值（每往 cur 追加一个左括号进行 +1；每往 cur 追加一个右括号进行 -1）
+     * max: 整个 dfs 过程的最大得分
+     * cur: 当前决策方案 
+     * ans: 合法方案结果集
+     */
+    void dfs(char[] cs, int u, int score, int max, String cur, Set<String> ans) {
+        if (u == cs.length) {
+            if (score == 0 && cur.length() >= len) {
+                len = Math.max(len, cur.length());
+                ans.add(cur);
+            }
+            return;
+        }
+        if (cs[u] == '(') {
+            if (score + 1 <= max) dfs(cs, u + 1, score + 1, max, cur + "(", ans);
+            dfs(cs, u + 1, score, max, cur, ans);
+        } else if (cs[u] == ')') {
+            if (score > 0) dfs(cs, u + 1, score - 1, max, cur + ")", ans);
+            dfs(cs, u + 1, score, max, cur, ans);
+        } else {
+            dfs(cs, u + 1, score, max, cur + String.valueOf(cs[u]), ans);
+        }
+    }
+}
+
+// 作者：AC_OIer
+// 链接：https://leetcode-cn.com/problems/remove-invalid-parentheses/solution/yi-fen-zhong-nei-kan-dong-jiang-gua-hao-aya6k/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
