@@ -23,7 +23,7 @@ class Solution {
                     ansR = l + len;
                 }
                 if (ori.containsKey(s.charAt(l))) {
-                    cnt.put(s.charAt(l), cnt.getOrDefault(s.charAt(l), 0) - 1);
+                    cnt.put(s.charAt(l), cnt.get(s.charAt(l)) - 1);
                 }
                 ++l;
             }
