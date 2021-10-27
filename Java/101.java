@@ -11,3 +11,28 @@ class Solution {
             && isMirror(t1.left, t2.right);
     }
 }
+
+
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null) return true;
+        mirror(root.right);
+        return isSame(root.left, root.right);
+    }
+    
+    public void mirror(TreeNode node) {
+        if(node == null) return;
+        mirror(node.left);
+        mirror(node.right);
+        TreeNode tmp = node.left;
+        node.left = node.right;
+        node.right = tmp;
+    }
+    
+    public boolean isSame(TreeNode a, TreeNode b) {
+        if(a == null && b == null) return true;
+        if(a == null || b == null) return false;
+        return a.val == b.val && isSame(a.left, b.left) && isSame(a.right, b.right);
+    }
+}
