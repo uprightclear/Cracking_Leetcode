@@ -32,15 +32,11 @@ class Solution {
     }
 
     public boolean check() {
-        Iterator iter = ori.entrySet().iterator(); 
-        while (iter.hasNext()) { 
-            Map.Entry entry = (Map.Entry) iter.next(); 
-            Character key = (Character) entry.getKey(); 
-            Integer val = (Integer) entry.getValue(); 
-            if (cnt.getOrDefault(key, 0) < val) {
-                return false;
-            }
-        } 
+        for(Map.Entry<Character, Integer> entry : ori.entrySet()) {
+            Character key = entry.getKey();
+            Integer value = entry.getValue();
+            if(cnt.getOrDefault(key, 0) < value) return false;
+        }
         return true;
     }
 }
