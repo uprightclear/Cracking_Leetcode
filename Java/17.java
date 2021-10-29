@@ -14,7 +14,7 @@ class Solution {
             return;
         }
 
-        String s = d[Character.getNumericValue(digits.charAt(l))];
+        String s = d[digits.charAt(l) - '0'];
 
         for (int i = 0; i < s.length(); ++i) {
             cur[l] = s.charAt(i);
@@ -36,7 +36,7 @@ class Solution {
         List<String> tmp = new ArrayList<>();
         for (String t : ans) {
             //获取第n位对应的字母映射
-            String s = d[Character.getNumericValue(digit)];
+            String s = d[digits.charAt(l) - '0'];
             //获取对应字母的第n位的所有可能
             for (int i = 0; i < s.length(); ++i)
             tmp.add(t + s.charAt(i));
