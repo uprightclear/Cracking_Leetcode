@@ -54,6 +54,7 @@ class MinStack {
     
     
     public void pop() {
+        //注意stack.peek()的返回值为指针
         if (stack.peek().equals(minStack.peek())) {
             minStack.pop();
         }
