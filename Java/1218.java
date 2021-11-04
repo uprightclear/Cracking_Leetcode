@@ -18,7 +18,7 @@ class Solution {
     }
 }
 
-
+//dp
 class Solution {
     public int longestSubsequence(int[] arr, int difference) {
         int ans = 1;
