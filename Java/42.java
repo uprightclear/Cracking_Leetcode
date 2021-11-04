@@ -100,16 +100,15 @@ public int trap(int[] height) {
 class Solution {
     public int trap(int[] height) {
         int sum = 0;
-        Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack = new LinkedList<Integer>();
         int current = 0;
-        while(current < height.length){
-            while(!stack.empty() && height[current] > height[stack.peek()]){
-                int h = height[stack.peek()];
-                stack.pop();
-                if(stack.empty()) break;
+        while(current < height.length) {
+            while(!stack.isEmpty() && height[current] > height[stack.peek()]) {
+                int h = height[stack.pop()];
+                if(stack.isEmpty()) break;
                 int distance = current - stack.peek() - 1;
                 int min = Math.min(height[stack.peek()], height[current]);
-                sum = sum + distance * (min - h);
+                sum += distance * (min - h);
             }
             stack.push(current);
             current++;
