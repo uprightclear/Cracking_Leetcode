@@ -1,23 +1,23 @@
 //too slow the later one is better
-class Solution {
-    public int[] plusOne(int[] digits) {
-        List<Integer> list = new ArrayList<>();
-        list.add((digits[digits.length - 1] + 1) % 10);
-        int sign = (digits[digits.length - 1] + 1) / 10;
-        for(int i = digits.length - 2; i >= 0; i--) {
-            list.add((digits[i] + sign) % 10);
-            sign = (digits[i] + sign) / 10;
-        }
-        if(sign != 0) list.add(sign);
+// class Solution {
+//     public int[] plusOne(int[] digits) {
+//         List<Integer> list = new ArrayList<>();
+//         list.add((digits[digits.length - 1] + 1) % 10);
+//         int sign = (digits[digits.length - 1] + 1) / 10;
+//         for(int i = digits.length - 2; i >= 0; i--) {
+//             list.add((digits[i] + sign) % 10);
+//             sign = (digits[i] + sign) / 10;
+//         }
+//         if(sign != 0) list.add(sign);
         
-        Collections.reverse(list);
-        int[] ans = new int[list.size()];
-        for(int i = 0; i < list.size(); i++) {
-            ans[i] = list.get(i);
-        }
-        return ans;
-    }
-}
+//         Collections.reverse(list);
+//         int[] ans = new int[list.size()];
+//         for(int i = 0; i < list.size(); i++) {
+//             ans[i] = list.get(i);
+//         }
+//         return ans;
+//     }
+// }
 
 
 class Solution {
