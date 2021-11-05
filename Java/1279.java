@@ -1,6 +1,7 @@
 class TrafficLight {
     //Initially, the traffic light is green on road A and red on road B
     private int greenRoad;
+    
     public TrafficLight() {
         greenRoad = 1;
     }
