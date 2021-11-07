@@ -1,0 +1,16 @@
+class Solution {
+    public int minimizedMaximum(int n, int[] A) {
+        int left = 1, right = 100000;
+        while (left < right) {
+            int mid = (left + right) / 2, sum = 0;
+            for (int a : A)
+                //(a + mid - 1) / mid means ceiling(a / mid)
+                sum += (a + mid - 1) / mid;
+            if (sum > n)
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return left;
+    }
+}
