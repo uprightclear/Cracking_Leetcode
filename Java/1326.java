@@ -10,7 +10,7 @@ class Solution {
         }
         
         int[] dp = new int[n + 1];
-        //到有边界i为止所需要的最少taps
+        //到右边界i为止所需要的最少taps
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
         
