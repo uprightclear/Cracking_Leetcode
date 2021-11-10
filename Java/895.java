@@ -1,5 +1,7 @@
 class FreqStack {
+    //k: element v: freq
     Map<Integer, Integer> freq;
+    //k: freq v: the element with the freq
     Map<Integer, Stack<Integer>> group;
     int maxfreq;
 
