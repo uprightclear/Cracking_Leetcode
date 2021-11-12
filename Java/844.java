@@ -1,23 +1,25 @@
 //重构字符串
 class Solution {
-    public boolean backspaceCompare(String S, String T) {
-        return build(S).equals(build(T));
+    public boolean backspaceCompare(String s, String t) {
+        String news = build(s);
+        String newt = build(t);
+        return news.equals(newt);
     }
-
-    public String build(String str) {
-        StringBuffer ret = new StringBuffer();
-        int length = str.length();
-        for (int i = 0; i < length; ++i) {
-            char ch = str.charAt(i);
-            if (ch != '#') {
-                ret.append(ch);
-            } else {
-                if (ret.length() > 0) {
-                    ret.deleteCharAt(ret.length() - 1);
-                }
+    
+    private String build(String s) {
+        Deque<Character> stack = new LinkedList<>();
+        for(int i = 0; i < s.length(); i++) {
+            if(!stack.isEmpty() && s.charAt(i) == '#') {
+                stack.pop();
+            } else if(s.charAt(i) != '#'){
+                stack.push(s.charAt(i));
             }
         }
-        return ret.toString();
+        //"ab#c"
+        //return [c, a]
+        return stack.toString();
+        //return [a, c]
+        return String.valueOf(stack);
     }
 }
 
