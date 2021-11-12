@@ -1,3 +1,4 @@
+//it's a recursion function
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         Arrays.sort(nums);
@@ -55,5 +56,42 @@ class Solution {
         }
                                                           
         return res;
+    }
+}
+
+//this is the old AC function but can not AC now since in line 85 and line 88 there exist overbound problem.
+class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
+    List<Integer> list = new ArrayList<>();
+    int cur = 0;
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        dfs(nums, target, 0);
+        return ans;
+    }
+    
+    private void dfs(int[] nums, int target, int pos) {
+        if(list.size() == 4) {
+            if(cur == target) ans.add(new ArrayList(list));
+            return;
+        }
+        
+        for(int i = pos; i < nums.length; i++) {
+            //it doesn't have enough element left to dfs
+            if(nums.length - i < 4 - list.size()) return;
+            //cut branch
+            if(pos != i && nums[i] == nums[i - 1]) continue;
+            //cut branch current sum is too big and cannot meet the requirement
+            if(i < nums.length - 1 && cur + nums[i] + (3 - list.size()) * nums[i + 1] > target) return;
+            //if current sum is too small that we can not meet the requirement even if we use the largest element later,
+            //we should abandon current choice
+            if(i < nums.length - 1 && cur + nums[i] + (3 - list.size()) * nums[nums.length - 1] < target) continue;
+            
+            cur += nums[i];
+            list.add(nums[i]);
+            dfs(nums, target, i + 1);
+            list.remove(list.size() - 1);
+            cur -= nums[i];
+        }
     }
 }
