@@ -33,6 +33,26 @@ class Solution {
     }
 }
 
+//sliding window that is easy to understand
+class Solution {
+    public int totalFruit(int[] tree) {
+        int begin = 0, end = 0, type = 0, len = 0; 
+        Map<Integer, Integer> map = new HashMap<>();
+        while (end < tree.length) {
+            int in = tree[end++]; // new character gets in from string right. 
+            if (map.getOrDefault(in, 0) == 0) type++;
+            map.put(in, map.getOrDefault(in, 0) + 1);
+            while (type > 2) {
+                int out = tree[begin++]; // old character gets out from string left.
+                //if the value that being replaced == 1
+                if (map.put(out, map.get(out) - 1) == 1) type--; 
+            }
+            len = Math.max(len, end - begin); 
+        }
+        return len; 
+    }
+}
+
 class Solution {
     public static int totalFruit(int[] fruits) {
         int length = fruits.length;
