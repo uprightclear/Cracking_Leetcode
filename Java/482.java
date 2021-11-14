@@ -20,7 +20,7 @@ class Solution {
     }
 }
 
-
+//this solution is the best solution
 class Solution {
     public String licenseKeyFormatting(String s, int k) {
         StringBuilder sb = new StringBuilder();
