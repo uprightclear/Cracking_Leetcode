@@ -11,7 +11,7 @@ class Solution {
        Set<String>set = new HashSet<>();
        int sum = 0; // 小矩形相加
        for(int i  =  0; i < n; i++){
-           int []t = r[i];
+           int[] t = r[i];
            //获得四个点坐标
            left = Math.min(left, t[0]);
            bottom = Math.min(bottom, t[1]);
