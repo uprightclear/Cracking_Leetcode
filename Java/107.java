@@ -1,29 +1,40 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> levels = new ArrayList<List<Integer>>();
-        if (root == null) return levels;
+        List<List<Integer>> ans = new ArrayList<>();
+        if(root == null) return ans;
         
-        ArrayDeque<TreeNode> nextLevel = new ArrayDeque() {{ offer(root); }};
-        ArrayDeque<TreeNode> currLevel = new ArrayDeque();        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
         
-        while (!nextLevel.isEmpty()) {
-            currLevel = nextLevel.clone();
-            nextLevel.clear();
-            levels.add(new ArrayList<Integer>());
-            
-            for (TreeNode node : currLevel) {
-                // append the current node value
-                levels.get(levels.size() - 1).add(node.val);
-
-                // process child nodes for the next level
-                if (node.left != null) 
-                    nextLevel.offer(node.left);    
-                if (node.right != null) 
-                    nextLevel.offer(node.right);
-            }   
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> level = new ArrayList<>();
+            for(int i = 0; i < size; i++) {
+                //List<Integer> level = new ArrayList<>();
+                TreeNode node = queue.poll();
+                level.add(node.val);
+                if(node.left != null) queue.offer(node.left);
+                if(node.right != null) queue.offer(node.right);
+            }
+            ans.add(level);
         }
         
-        Collections.reverse(levels);
-        return levels;
+        Collections.reverse(ans);
+        return ans;
     }
 }
