@@ -1,7 +1,7 @@
 class Solution {
     public void wiggleSort(int[] nums) {
         int len = nums.length;
-        int[] buckets = new int[50001];
+        int[] buckets = new int[5001];
         
         for(int num : nums) {
             buckets[num]++;
