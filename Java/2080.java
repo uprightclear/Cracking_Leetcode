@@ -27,10 +27,10 @@ class RangeFreqQuery {
         
         while(left < right){
             int mid = (left+right)/2;
-            if(A.get(mid) < x)
-                left = mid + 1;
-            else 
+            if(A.get(mid) >= x)
                 right = mid;
+            else 
+                left = mid + 1;
         }
         return left;
     }
@@ -42,10 +42,10 @@ class RangeFreqQuery {
         
         while(left < right){
             int mid = (left+right)/2+1;
-            if(A.get(mid) > x)
-                right = mid - 1;
-            else 
+            if(A.get(mid) <= x)
                 left = mid;
+            else 
+                right = mid - 1;
         }
         return left;
     }    
