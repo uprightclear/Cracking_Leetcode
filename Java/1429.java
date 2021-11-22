@@ -1,6 +1,6 @@
 class FirstUnique {
 
-    private Queue<Integer> queue = new ArrayDeque<>();
+    private Queue<Integer> queue = new LinkedList<>();
     private Map<Integer, Boolean> isUnique = new HashMap<>();
   
     public FirstUnique(int[] nums) {
@@ -15,7 +15,7 @@ class FirstUnique {
       // Note that we know that if a value is in the queue, then it is also in
       // isUnique, as the implementation of add() guarantees this.
       while (!queue.isEmpty() && !isUnique.get(queue.peek())) {
-        queue.remove();
+        queue.poll();
       }
       // Check if there is still a value left in the queue. There might be no uniques.
       if (!queue.isEmpty()) {
