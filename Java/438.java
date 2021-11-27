@@ -12,6 +12,7 @@ class Solution {
         if(Arrays.equals(sCnt, pCnt)){
             res.add(0);
         }
+        //i: the right of the sliding window
         for(int i = m; i < n; i++){
             sCnt[s.charAt(i - m) - 'a']--;
             sCnt[s.charAt(i) - 'a']++;
