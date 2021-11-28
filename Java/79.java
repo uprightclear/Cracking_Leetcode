@@ -58,6 +58,11 @@ class Solution {
     }
 }
 
+
+
+
+
+
 class Solution {
     int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     boolean[][] used;
