@@ -3,7 +3,7 @@ class Solution {
         long cnt[] = new long[1024], res = 0;
         int mask = 0;
         cnt[0] = 1;
-        for (var ch : word.toCharArray()) {
+        for (char ch : word.toCharArray()) {
             //judge the absolute wondeful substring
             mask ^= 1 << (ch - 'a');
             res += cnt[mask];
