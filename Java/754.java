@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/reach-a-number/solution/
+//pure math
 class Solution {
     public int reachNumber(int target) {
         target = Math.abs(target);
