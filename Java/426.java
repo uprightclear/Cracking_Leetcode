@@ -59,4 +59,4 @@ class Solution {
       first.left = last;
       return first;
     }
-  }
+}
