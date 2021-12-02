@@ -11,6 +11,6 @@ class Solution {
         if (l2 != null) l2 = l2.next;
         sum /= 10;
       }
-      return dummy.next;
-    }
+    return dummy.next;
   }
+}
