@@ -17,7 +17,7 @@ class StreamChecker {
                 }
                 node = node.children.get(ch);
             }
-            node.word = true;    
+            node.word = true;
         }
     }
     
