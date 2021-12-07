@@ -33,6 +33,6 @@ class Solution {
             ans.add(layer);
             dir = !dir;
         }
-        return ans;        
+        return ans;
     }
 }
