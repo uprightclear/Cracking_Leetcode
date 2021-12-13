@@ -1,3 +1,4 @@
+//priority queue
 public class Solution {
     public int scheduleCourse(int[][] courses) {
         Arrays.sort(courses, (a, b) -> a[1] - b[1]);
