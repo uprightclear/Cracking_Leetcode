@@ -64,6 +64,8 @@ class Solution {
             ++l;
         for (int r = l; r < f.length && f[r][0] <= pos + k; ++r) {
             sum += f[r][1];
+            //1. cur position to left then to right  (pos - f[l][0]) + (f[r][0] - f[l][0])
+            //2. cur position to right then to left  (f[r][0] - f[l][0]) + (f[r][0] - pos)
             while(Math.min(pos - 2 * f[l][0] + f[r][0], 2 * f[r][0] - f[l][0] - pos) > k)
                 sum -= f[l++][1];
             max_sum = Math.max(max_sum, sum);
