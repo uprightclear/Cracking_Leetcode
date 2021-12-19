@@ -17,7 +17,7 @@ class Solution {
     }
 }
 
-//binary seach
+//binary seach (https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-by-leetcode-soluti/)
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int len = 0;
