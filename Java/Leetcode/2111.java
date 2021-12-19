@@ -9,6 +9,7 @@ class Solution {
        return result;
     }
 
+    //we must use bs algo or the solution will be TLE
     private int increasing(List<Integer> nums) {
         // 将 nums 变成递增
         // nlogn 求 LIS
