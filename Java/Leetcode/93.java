@@ -9,7 +9,7 @@ class Solution {
             return res;
         }
 
-        dfs(s,  0, 4);
+        dfs(s, 0, 4);
         return res;
     }
 
@@ -26,12 +26,12 @@ class Solution {
             if (i >= len) {
                 break;
             }
-
-            if ((residue-1) * 3 < len-1-i) {
+            //current residue is not long enough
+            if ((residue - 1) * 3 < len - 1 - i) {
                 continue;
             }
-
-            if(residue-1> len-1-i){
+            //current residue is too long
+            if(residue - 1 > len - 1 - i){
                 break;
             }
 
