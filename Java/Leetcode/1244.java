@@ -29,10 +29,7 @@ class Leaderboard {
         }
         
         int total = 0;
-        Iterator value = heap.iterator();
-        while (value.hasNext()) { 
-            total += ((Map.Entry<Integer, Integer>)value.next()).getValue();   
-        }
+        while(!heap.isEmpty()) total += heap.poll().getValue();
         
         return total;
     }
