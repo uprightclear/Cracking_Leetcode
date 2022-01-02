@@ -11,7 +11,7 @@ class Solution {
         if ((year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) && month >= 3) {
             days += 1;
         }
-        /* 输入月份中的天数贡献The days contributed by the current month */
+        /* he days contributed by the current month */
         days += day;
         return week[(days + 3) % 7];
     }
