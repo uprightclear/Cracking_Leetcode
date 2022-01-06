@@ -1,3 +1,4 @@
+//bucket sort
 class Solution {
     public boolean carPooling(int[][] trips, int capacity) {
         int[] timestamp = new int[1001];
