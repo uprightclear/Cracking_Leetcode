@@ -21,9 +21,11 @@ class Solution {
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int len = 0;
+        //dp[i]: 长度为 i 的最长上升子序列的末尾元素的最小值
         int[] dp = new int[nums.length];
         for(int num : nums) {
             int l = 0, r = len;
+            //find the pos to intersect(same as #35)
             while(l < r) {
                 int mid = (l + r) / 2;
                 if(dp[mid] < num) {
