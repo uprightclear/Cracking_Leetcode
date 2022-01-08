@@ -2,6 +2,7 @@ class Solution {
     public int cherryPickup(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
+        //Let dp(row, col1, col2) return the maximum cherries we can pick if robot1 starts at (row, col1) and robot2 starts at (row, col2).
         int[][][] dpCache = new int[m][n][n];
         // initial all elements to -1 to mark unseen
         for (int i = 0; i < m; i++) {
