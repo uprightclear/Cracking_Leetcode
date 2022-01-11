@@ -8,6 +8,8 @@ class Solution {
             totalOnes += num;
         }
         
+        //i:the start of the sliding window
+        //j: the end of the sliding window
         for(int i = 0, j = 0; i < len; i++) {
             while(j - i < totalOnes) curOnesInWindow += nums[j++ % len];
             maxOnesInWindow = Math.max(maxOnesInWindow, curOnesInWindow);
