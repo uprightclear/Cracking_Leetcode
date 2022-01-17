@@ -1,10 +1,14 @@
 class Solution {
     public int findMinDifference(List<String> timePoints) {
+        int n = timePoints.size();
+        if (n > 1440) {
+            return 0;
+        }
         Collections.sort(timePoints);
         int ans = Integer.MAX_VALUE;
         int t0Minutes = getMinutes(timePoints.get(0));
         int preMinutes = t0Minutes;
-        for (int i = 1; i < timePoints.size(); ++i) {
+        for (int i = 1; i < n; ++i) {
             int minutes = getMinutes(timePoints.get(i));
             ans = Math.min(ans, minutes - preMinutes); // 相邻时间的时间差
             preMinutes = minutes;
