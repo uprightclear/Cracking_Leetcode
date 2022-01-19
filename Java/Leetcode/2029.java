@@ -9,3 +9,16 @@ class Solution {
         return Math.abs(cnt[1] - cnt[2]) > 2 || cnt[0] % 2 == 0;
     }
 }
+
+
+class Solution {
+    public boolean stoneGameIX(int[] stones) {
+        int[] cnt = new int[3];
+        for (int a: stones)
+            cnt[a % 3]++;
+        //if cnt[0] % 2 == 0 and Math.min(cnt[1], cnt[2]) > 0 the result can be controlled by Alice
+        //Alice can always choose the number with less[mod3]
+        if (cnt[0] % 2 == 0) return Math.min(cnt[1], cnt[2]) > 0;
+        return Math.abs(cnt[1] - cnt[2]) > 2;
+    }
+}
