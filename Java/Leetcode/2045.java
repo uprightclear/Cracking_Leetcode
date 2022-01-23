@@ -1,3 +1,4 @@
+//https://leetcode-cn.com/problems/second-minimum-time-to-reach-destination/solution/dao-da-mu-de-di-de-di-er-duan-shi-jian-b-05i0/
 class Solution {
     public int secondMinimum(int n, int[][] edges, int time, int change) {
         List<Integer>[] graph = new List[n + 1];
