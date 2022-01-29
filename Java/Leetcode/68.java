@@ -31,6 +31,7 @@ class Solution {
 
             // 当前行不只一个单词
             int avgSpaces = numSpaces / (numWords - 1);
+            //extraSpaces: 需要额外加一个空格的单词数量
             int extraSpaces = numSpaces % (numWords - 1);
             StringBuffer sb = new StringBuffer();
             sb.append(join(words, left, left + extraSpaces + 1, blank(avgSpaces + 1))); // 拼接额外加一个空格的单词
