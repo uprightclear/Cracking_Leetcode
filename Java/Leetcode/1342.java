@@ -1,3 +1,4 @@
+//ez to simulate
 class Solution {
     public int numberOfSteps(int num) {
         int step = 0;
