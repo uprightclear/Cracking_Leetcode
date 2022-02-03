@@ -9,19 +9,20 @@ class Solution {
         }
 
         // DP 数组
+        // dp(i, j) := minimum cost (or steps) required to convert first i characters of word1 to first j characters of word2
         int[][] D = new int[n + 1][m + 1];
 
         // 边界状态初始化
-        for (int i = 0; i < n + 1; i++) {
+        for (int i = 0; i <= n; i++) {
             D[i][0] = i;
         }
-        for (int j = 0; j < m + 1; j++) {
+        for (int j = 0; j <= m; j++) {
             D[0][j] = j;
         }
 
         // 计算所有 DP 值
-        for (int i = 1; i < n + 1; i++) {
-            for (int j = 1; j < m + 1; j++) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
                 int left = D[i - 1][j] + 1;
                 int down = D[i][j - 1] + 1;
                 int left_down = D[i - 1][j - 1];
