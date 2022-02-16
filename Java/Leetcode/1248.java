@@ -15,3 +15,21 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        int start = -1, first_odd = 0;
+        int ans = 0;
+        for(int num : nums) {
+            k -= num % 2;
+            if(nums[first_odd] % 2 == 0) first_odd++;
+            if(k < 0) start = first_odd;
+            while(k < 0) {
+                first_odd++;
+                k += nums[first_odd] % 2;
+            }
+            if(k == 0) ans += first_odd - start;
+        }
+        return ans;
+    }
+}
