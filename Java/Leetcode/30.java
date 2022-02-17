@@ -13,7 +13,7 @@ class Solution {
                 String word = s.substring(i + j * len, i + (j + 1) * len);
                 if (counts.containsKey(word)) {
                     seen.put(word, seen.getOrDefault(word, 0) + 1);
-                    if (seen.get(word) > counts.getOrDefault(word, 0)) {
+                    if (seen.get(word) > counts.get(word)) {
                         break;
                     }
                 } else {
