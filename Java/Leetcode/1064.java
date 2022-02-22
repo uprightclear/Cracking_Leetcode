@@ -1,3 +1,4 @@
+//since we make sure that arr[i] - i is undecreasing, so we can use binarySearch
 class Solution {
     public int fixedPoint(int[] arr) {
         int n = arr.length;
