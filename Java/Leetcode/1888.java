@@ -28,7 +28,7 @@ class Solution {
             //flap steps to make odd index with 0 and even index with 1 from right to left? (010101....)
             if (j % 2 == 0 && s[i] == '1' || j % 2 == 1 && s[i] == '0')
                 sumRight0++;
-            //flap steps to make odd index with 1 and even index with 0 from right to left? (010101....)
+            //flap steps to make odd index with 1 and even index with 0 from right to left? (101010....)
             if (j % 2 == 0 && s[i] == '0' || j % 2 == 1 && s[i] == '1')
                 sumRight1++;
             right0[i] = sumRight0;
