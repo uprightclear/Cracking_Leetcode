@@ -1,3 +1,4 @@
+//pure math
 class Solution {
     public int countOrders(int n) {
         long res = 1, mod = (long)1e9 + 7;
