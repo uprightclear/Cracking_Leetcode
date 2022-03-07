@@ -9,8 +9,8 @@ class Solution {
             int mid = (l + r) / 2;
             if(nums[mid] == target) return mid;
 
-            if(nums[0] <= nums[mid]){//left odered
-                if(nums[0] <= target && target < nums[mid]){//in left
+            if(nums[l] <= nums[mid]){//left odered
+                if(nums[l] <= target && target < nums[mid]){//in left
                     r = mid - 1;
                 }else{
                     l = mid + 1;
