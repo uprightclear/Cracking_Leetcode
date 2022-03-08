@@ -19,7 +19,7 @@ class Solution {
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int len = 0;
-        //dp[i]: 长度为 i 的最长上升子序列的末尾元素的最小值
+        //dp[i]: the max end num of subsequence with length i + 1
         int[] dp = new int[nums.length];
         for(int num : nums) {
             int l = 0, r = len;
@@ -32,8 +32,8 @@ class Solution {
                     r = mid;
                 }
             }
-            if(r >= len) len++;
-            dp[r] = num;
+            if(l >= len) len++;
+            dp[l] = num;
         }
         return len;
     }
