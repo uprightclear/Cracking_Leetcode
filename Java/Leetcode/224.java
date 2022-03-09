@@ -34,3 +34,39 @@ class Solution {
         return ret;
     }
 }
+
+class Solution {
+    public int calculate(String s) {
+        s = s.trim();
+        Stack<Integer> stack = new Stack<>();
+        int num = 0;
+        int sign = 1;
+        int res = 0;
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(Character.isDigit(c)) num = num * 10 + s.charAt(i) - '0';
+            else {
+                if(c == '+') {
+                    res += sign * num;
+                    sign = 1;
+                    num = 0;
+                } else if(c == '-') {
+                    res += sign * num;
+                    sign = -1;
+                    num = 0;
+                } else if(c == '(') {
+                    stack.push(res);
+                    stack.push(sign);
+                    sign = 1;
+                    res = 0;
+                } else if(c == ')'){
+                    res += sign * num;
+                    res *= stack.pop();
+                    res += stack.pop();
+                    num = 0;
+                }
+            }
+        }
+        return res + sign * num;
+    }
+}
