@@ -18,10 +18,6 @@ class Solution {
 }
 
 
-
-
-
-
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
         Map<String, Integer> cnt = new HashMap<String, Integer>();
