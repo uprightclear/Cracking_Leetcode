@@ -33,3 +33,18 @@ class Solution {
         return ans;
     }
 }
+
+
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        Map<Integer, Integer> cnt = new HashMap<>();
+        cnt.put(0, 1);
+        int numOfOdd = 0, ans = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] % 2 != 0) numOfOdd++;
+            if(cnt.containsKey(numOfOdd - k)) ans += cnt.get(numOfOdd - k);
+            cnt.put(numOfOdd, cnt.getOrDefault(numOfOdd, 0) + 1);
+        }
+        return ans;
+    }
+}
