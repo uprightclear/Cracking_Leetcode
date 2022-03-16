@@ -64,3 +64,29 @@ class TrieNode {
         curr.word = true;
     }   
 }
+
+
+
+class Solution {
+    public List<String> findAllConcatenatedWordsInADict(String[] words) {
+        Set<String> set = new HashSet<>(Arrays.asList(words));
+        List<String> res = new ArrayList<>();
+        for(String word: words) {
+            if(dfs(word, set)) res.add(word);
+        }
+        return res;
+    }
+    
+    private boolean dfs(String word, Set<String> set){
+        for(int i = 1; i < word.length(); i++){
+            if(set.contains(word.substring(0, i))) {
+                String suffix = word.substring(i);
+                if(set.contains(suffix) || dfs(suffix, set)) {
+                    set.add(word);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
