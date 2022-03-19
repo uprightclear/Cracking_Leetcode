@@ -13,6 +13,8 @@
  *     }
  * }
  */
+
+ //recursion
 class Solution {
     public String tree2str(TreeNode t) {
         if (t == null) return "";
