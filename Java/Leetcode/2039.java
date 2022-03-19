@@ -1,3 +1,4 @@
+//https://leetcode-cn.com/problems/the-time-when-the-network-becomes-idle/solution/wang-luo-kong-xian-de-shi-ke-by-leetcode-qttv/
 class Solution {
     public int networkBecomesIdle(int[][] edges, int[] patience) {
         int n = patience.length;       
