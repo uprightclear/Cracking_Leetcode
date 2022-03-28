@@ -13,3 +13,15 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int res = 0, maxf = 0, cnt[] = new int[26];
+        for(int i = 0; i < s.length(); i++) {
+            maxf = Math.max(maxf, ++cnt[s.charAt(i) - 'A']);
+            if(maxf + k > res) res++;
+            else --cnt[s.charAt(i - res) - 'A'];
+        }
+        return res;
+    }
+}
