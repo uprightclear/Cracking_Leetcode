@@ -1,3 +1,4 @@
+//线段树
 class NumArray {
     int[] tree;
     int n;
@@ -43,6 +44,8 @@ class NumArray {
         return sum;
     }
 }
+
+//https://leetcode-cn.com/problems/range-sum-query-mutable/solution/xian-duan-shu-zu-shou-hui-tu-xiang-yi-qing-er-chu-/
 
 /**
  * Your NumArray object will be instantiated and called as such:
