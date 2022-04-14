@@ -1,3 +1,4 @@
+//ez
 class Solution {
     public int maximumWealth(int[][] accounts) {
         int maxWealthSoFar = 0;
