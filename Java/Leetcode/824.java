@@ -1,46 +1,14 @@
 class Solution {
-    public String toGoatLatin(String sentence) {
-        Set<Character> vowels = new HashSet<Character>() {{
-            add('a');
-            add('e');
-            add('i');
-            add('o');
-            add('u');
-            add('A');
-            add('E');
-            add('I');
-            add('O');
-            add('U');
-        }};
-
-        int n = sentence.length();
-        int i = 0, cnt = 1;
-        StringBuffer ans = new StringBuffer();
-
-        while (i < n) {
-            int j = i;
-            while (j < n && sentence.charAt(j) != ' ') {
-                ++j;
+    public String toGoatLatin(String S) {
+        Set<Character> vowels = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
+        String res = "";
+        int i = 0, j = 0;
+        for (String w : S.split("\\s")) {
+            res += ' ' + (vowels.contains(w.charAt(0)) ? w : w.substring(1) + w.charAt(0)) + "ma";
+            for (j = 0, ++i; j < i; ++j) {
+                res += "a";
             }
-
-            ++cnt;
-            if (cnt != 2) {
-                ans.append(' ');
-            }
-            if (vowels.contains(sentence.charAt(i))) {
-                ans.append(sentence.substring(i, j));
-            } else {
-                ans.append(sentence.substring(i + 1, j));
-                ans.append(sentence.charAt(i));
-            }
-            ans.append('m');
-            for (int k = 0; k < cnt; ++k) {
-                ans.append('a');
-            }
-
-            i = j + 1;
-        }
-
-        return ans.toString();
+        };
+        return res.substring(1);
     }
 }
