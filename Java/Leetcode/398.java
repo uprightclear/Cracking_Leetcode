@@ -14,6 +14,7 @@ class Solution {
         return list.get(rand.nextInt(list.size()));
     }
 }
+
 /**
  * Your Solution object will be instantiated and called as such:
  * Solution obj = new Solution(nums);
