@@ -6,14 +6,12 @@ class Solution {
         while (p < heights.length) {
             //栈空入栈
             if (stack.isEmpty()) {
-                stack.push(p);
-                p++;
+                stack.push(p++);
             } else {
                 int top = stack.peek();
                 //当前高度大于栈顶，入栈
                 if (heights[p] >= heights[top]) {
-                    stack.push(p);
-                    p++;
+                    stack.push(p++);
                 } else {
                     //保存栈顶高度
                     int height = heights[stack.pop()];
