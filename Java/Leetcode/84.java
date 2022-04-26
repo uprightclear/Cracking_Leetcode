@@ -25,6 +25,7 @@ class Solution {
                 }
             }
         }
+        
         while (!stack.isEmpty()) {
             //保存栈顶高度
             int height = heights[stack.pop()];
