@@ -21,3 +21,19 @@ class RecentCounter {
  * RecentCounter obj = new RecentCounter();
  * int param_1 = obj.ping(t);
  */
+
+class RecentCounter {
+    Queue<Integer> queue;
+
+    public RecentCounter() {
+        queue = new ArrayDeque<Integer>();
+    }
+
+    public int ping(int t) {
+        queue.offer(t);
+        while (queue.peek() < t - 3000) {
+            queue.poll();
+        }
+        return queue.size();
+    }
+}
