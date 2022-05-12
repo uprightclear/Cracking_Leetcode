@@ -9,7 +9,7 @@ class Solution {
     }
     //n：长度为n的数组 s：长度为n的数组中的起始位置
     public void dfs(int[] nums, int n, int s, Deque<Integer> tmp, List<List<Integer>> res){
-        if(n == tmp.size()){
+        if(tmp.size() == n){
             res.add(new ArrayList<>(tmp));
             return;
         }
