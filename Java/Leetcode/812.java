@@ -1,3 +1,4 @@
+//三角形面积公式 https://leetcode.cn/problems/largest-triangle-area/solution/zui-da-san-jiao-xing-mian-ji-by-leetcode-yefh/
 class Solution {
     public double largestTriangleArea(int[][] points) {
         int n = points.length;
