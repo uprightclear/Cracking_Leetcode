@@ -8,6 +8,29 @@ class LRUCache {
         public DLinkedNode(int _key, int _value) {key = _key; value = _value;}
     }
 
+    private void addToHead(DLinkedNode node) {
+        node.prev = head;
+        node.next = head.next;
+        head.next.prev = node;
+        head.next = node;
+    }
+
+    private void removeNode(DLinkedNode node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void moveToHead(DLinkedNode node) {
+        removeNode(node);
+        addToHead(node);
+    }
+
+    private DLinkedNode removeTail() {
+        DLinkedNode res = tail.prev;
+        removeNode(res);
+        return res;
+    }
+
     private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
     private int size;
     private int capacity;
@@ -56,29 +79,6 @@ class LRUCache {
             node.value = value;
             moveToHead(node);
         }
-    }
-
-    private void addToHead(DLinkedNode node) {
-        node.prev = head;
-        node.next = head.next;
-        head.next.prev = node;
-        head.next = node;
-    }
-
-    private void removeNode(DLinkedNode node) {
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-    }
-
-    private void moveToHead(DLinkedNode node) {
-        removeNode(node);
-        addToHead(node);
-    }
-
-    private DLinkedNode removeTail() {
-        DLinkedNode res = tail.prev;
-        removeNode(res);
-        return res;
     }
 }
 
