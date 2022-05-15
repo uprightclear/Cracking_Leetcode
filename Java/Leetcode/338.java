@@ -9,11 +9,12 @@ class Solution {
 }
 
 
-class Solution {
+public class Solution {
     private int popCount(int x) {
-        int count;
-        for (count = 0; x != 0; ++count) {
-            x &= x - 1; // zeroing out the least significant nonzero bit
+        int count = 0;
+        while(x != 0) {
+            x &= x - 1;
+            count++;
         }
         return count;
     }
