@@ -59,6 +59,7 @@ class Solution {
     }
 }
 
+//standard union-find
 public class Solution {
     public boolean validTree(int n, int[][] edges) {
         UnionFind set = new UnionFind(n);
@@ -108,7 +109,7 @@ public class Solution {
                 id[qi] = pi;
                 size[pi] += size[qi];
             }
-            count--;
+            if(pi != qi) count--;
         }
     }
 }
