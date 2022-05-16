@@ -26,3 +26,20 @@ class Solution {
         return true;
     }
 }
+
+class Solution {
+    public boolean isAlienSorted(String[] words, String order) {
+        for(int i = 1; i < words.length; i++) {
+            String first = words[i - 1];
+            String second = words[i];
+            if(first.startsWith(second) && first.length() > second.length()) return false;
+            for(int j = 0; j < Math.min(first.length(), second.length()); j++) {
+                if(first.charAt(j) != second.charAt(j)) {
+                    if(order.indexOf(first.charAt(j)) > order.indexOf(second.charAt(j))) return false;
+                    else break;
+                }
+            }
+        }
+        return true;
+    }
+}
