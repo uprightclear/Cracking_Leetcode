@@ -26,6 +26,7 @@ class Solution {
 class Solution {
     public int longestSubarray(int[] A, int limit) {
         int i = 0, j;
+        //Sliding Window + TreeMap
         TreeMap<Integer, Integer> m = new TreeMap<>();
         for (j = 0; j < A.length; j++) {
             m.put(A[j], 1 + m.getOrDefault(A[j], 0));
