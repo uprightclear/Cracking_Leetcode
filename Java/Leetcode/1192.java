@@ -16,7 +16,7 @@ class Solution {
     }
     
     int dfs(List<Integer>[] graph, int node, int depth, int[] rank, HashSet<List<Integer>> connectionsSet){
-        if (rank[node]>=0){
+        if (rank[node] >= 0){
             return rank[node]; // already visited node. return its rank
         }
         rank[node] = depth;
