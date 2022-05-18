@@ -22,21 +22,19 @@ class Solution {
     }
 }
 
-
+//sliding window + TreeMap
 class Solution {
-    public int longestSubarray(int[] A, int limit) {
-        int i = 0, j;
-        //Sliding Window + TreeMap
-        TreeMap<Integer, Integer> m = new TreeMap<>();
-        for (j = 0; j < A.length; j++) {
-            m.put(A[j], 1 + m.getOrDefault(A[j], 0));
-            if (m.lastEntry().getKey() - m.firstEntry().getKey() > limit) {
-                m.put(A[i], m.get(A[i]) - 1);
-                if (m.get(A[i]) == 0)
-                    m.remove(A[i]);
-                i++;
+    public int longestSubarray(int[] nums, int limit) {
+        int start = 0, end;
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        for(end = 0; end < nums.length; end++) {
+            map.put(nums[end], map.getOrDefault(nums[end], 0) + 1);
+            if(map.lastEntry().getKey() - map.firstEntry().getKey() > limit) {
+                map.put(nums[start], map.get(nums[start]) - 1);
+                if(map.get(nums[start]) == 0) map.remove(nums[start]);
+                start++;
             }
         }
-        return j - i;
+        return end - start;
     }
 }
