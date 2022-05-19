@@ -1,3 +1,4 @@
+//binary search
 class Solution {
     public int[] findRightInterval(int[][] intervals) {
         int n = intervals.length;
