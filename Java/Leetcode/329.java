@@ -50,6 +50,6 @@ public class Solution {
             if (0 <= x && x < m && 0 <= y && y < n && matrix[x][y] > matrix[i][j])
                 cache[i][j] = Math.max(cache[i][j], dfs(matrix, x, y, cache));
         }
-        return ++cache[i][j];
+        return ++cache[i][j]; //add itself
     }
 }
