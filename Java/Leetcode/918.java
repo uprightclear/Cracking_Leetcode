@@ -11,6 +11,7 @@ class Solution {
             max = Math.max(dp, max);
         }
 
+        //求最小子序列和
         int min = 0;
         dp = A[0];
         //注意，这里的区间范围一定不能包含最后一位，（eg. 全负的数组会出错）
