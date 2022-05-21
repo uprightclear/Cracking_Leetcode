@@ -57,3 +57,27 @@ class Solution {
         }
     }
 }
+
+
+class Solution {
+    List<List<Integer>> ans = new LinkedList<>();
+    int n, k;
+    public List<List<Integer>> combine(int n, int k) {
+        this.n = n;
+        this.k = k;
+        dfs(1, new LinkedList<Integer>());
+        return ans;
+    }
+    
+    public void dfs(int first, LinkedList<Integer> cur) {
+        if(cur.size() == k) {
+            ans.add(new LinkedList<>(cur));
+            return;
+        }
+        for(int i = first; i <= n; i++) {
+            cur.add(i);
+            dfs(i + 1, cur);
+            cur.removeLast();
+        }
+    }
+}
