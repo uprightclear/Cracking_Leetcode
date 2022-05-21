@@ -3,7 +3,6 @@ class Solution {
         int diff = Integer.MAX_VALUE;
         int size = nums.length;
         Arrays.sort(nums);
-        int ans = nums[0] + nums[1] + nums[2];
         for(int i = 0; i < size && diff != 0; i++) {
             if(i > 0 && nums[i] == nums[i - 1]) continue;
             int l = i + 1, r = nums.length - 1;
