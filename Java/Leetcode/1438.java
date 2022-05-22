@@ -39,7 +39,7 @@ class Solution {
     }
 }
 
-
+//stack
 public int longestSubarray(int[] nums, int limit) {
     Deque<Integer> maxQ = new LinkedList<>();
     Deque<Integer> minQ = new LinkedList<>();
