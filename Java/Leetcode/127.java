@@ -1,8 +1,8 @@
 //BFS
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Set<String> dict = new HashSet<>();
-        for(String w : wordList) dict.add(w);
+        Set<String> dict = new HashSet<>(wordList);
+        //for(String w : wordList) dict.add(w);
 
         if(!dict.contains(endWord)) return 0;
 
