@@ -86,9 +86,9 @@ class Solution {
         return -1;
     }
 
-    private boolean validateInputParams(int k, int m, int n) {
-        return m > 40 || m < 1 || n > 40 || n < 1 || k < 1 || k > m * n;
-    }
+    // private boolean validateInputParams(int k, int m, int n) {
+    //     return m > 40 || m < 1 || n > 40 || n < 1 || k < 1 || k > m * n;
+    // }
 
     class Point {
         int x;
