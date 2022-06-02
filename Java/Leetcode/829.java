@@ -13,3 +13,5 @@ class Solution {
         return count;
     }
 }
+
+//https://leetcode.com/problems/consecutive-numbers-sum/solution/
