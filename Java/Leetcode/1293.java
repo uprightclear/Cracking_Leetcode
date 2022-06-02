@@ -3,13 +3,13 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
         // 非法参数处理
-        if (validateInputParams(k, m, n)) {
-            return -1;
-        }
+        // if (validateInputParams(k, m, n)) {
+        //     return -1;
+        // }
+
         // 特殊场景处理
-        if (m == 1 && n == 1) {
-            return 0;
-        }
+        if (m == 1 && n == 1) return 0;
+        
 
         // BFS对于当前点的下一个点选择，如果grid[i][j]=0则有效入队列 visited[i][j]记录消除障碍次数
         // 若grid[i][j]=1则看是否还有消除障碍机会，若没有 此点丢弃
