@@ -12,6 +12,8 @@ class Solution {
         int k = 2;
         // S记录连续k个A指令，达到的位置
         int S = 3;
+        // 假设我们需要到达位置 x，且 2^(k-1) <= x < 2^k
+
         for (int i = 3; i <= target; i++) {
             if(i == S) {
                 f[i] = k++;
