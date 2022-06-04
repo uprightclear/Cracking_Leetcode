@@ -6,7 +6,7 @@ class Solution {
         }
         
         Collections.sort(list, (a, b) -> b[0] - a[0]);
-        
+        //从高位向低位replace，可以避免index变化
         for(int[] sort : list) {
             int index = sort[0], place = sort[1];
             String source = sources[place], target = targets[place];
