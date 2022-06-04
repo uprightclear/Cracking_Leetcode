@@ -52,7 +52,7 @@ class Solution {
         for (String word : words) {
             int presentLength = 1;
             // Find all possible predecessors for the current word by removing one letter at a time.
-            for (int i = 0; i < word.length(); i++) {l
+            for (int i = 0; i < word.length(); i++) {
                 StringBuilder temp = new StringBuilder(word);
                 temp.deleteCharAt(i);
                 String predecessor = temp.toString();
