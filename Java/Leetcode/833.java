@@ -10,7 +10,7 @@ class Solution {
         for(int[] sort : list) {
             int index = sort[0], place = sort[1];
             String source = sources[place], target = targets[place];
-            if(s.substring(index, index + source.length()).equals(source)) {
+            if(index + source.length() <= s.length() && s.substring(index, index + source.length()).equals(source)) {
                 s = s.substring(0, index) + target + s.substring(index + source.length());
             }
         }
