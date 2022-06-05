@@ -23,7 +23,7 @@ class Solution {
     }
 }
 
-
+//O(mn)
 class Solution {
     public boolean differByOne(String[] dict) {
         int m  = dict.length, n = dict[0].length();
