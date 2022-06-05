@@ -26,7 +26,7 @@ public class Solution {
     }
   }
 
-  // DFS + Memoization Solution
+// DFS + Memoization Solution
 // Accepted and Recommended
 public class Solution {
     private static final int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
