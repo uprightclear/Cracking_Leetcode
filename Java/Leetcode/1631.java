@@ -5,7 +5,7 @@ class Solution {
         int[][] dist = new int[m][n];
         for (int i = 0; i < m; i++) Arrays.fill(dist[i], Integer.MAX_VALUE);
         
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
         minHeap.offer(new int[]{0, 0, 0}); // distance, row, col
         while (!minHeap.isEmpty()) {
             int[] top = minHeap.poll();
