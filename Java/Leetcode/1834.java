@@ -8,7 +8,7 @@ class Solution {
             extTasks[i][1] = tasks[i][0];
             extTasks[i][2] = tasks[i][1];
         }
-        Arrays.sort(extTasks, (a,b)->a[1] - b[1]);
+        Arrays.sort(extTasks, (a, b) -> a[1] - b[1]);
         PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[2] == b[2] ? a[0] - b[0] : a[2] - b[2]);
         int time = 0;
         int index = 0;
