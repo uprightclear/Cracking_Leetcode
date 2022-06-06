@@ -1,5 +1,4 @@
 class Solution {
-
     public int getNext(int n) {
        int totalSum = 0;
        while (n > 0) {
