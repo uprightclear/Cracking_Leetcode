@@ -1,5 +1,5 @@
 //序列化二叉树，是每一个子树都有唯一的序列化标识
-//o(n^2)
+//o(n^2) this is postorder
 class Solution {
     Map<String, Integer> count;
     List<TreeNode> ans;
