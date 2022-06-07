@@ -28,7 +28,7 @@ class Solution {
     }
 }
 
-//dfs
+//枚举
 class Solution {
     int sum = 0;
     int m, n;
@@ -42,17 +42,16 @@ class Solution {
             for(int j = 0; j < n; j++) {
                 for(int k = 1; k <= len; k++) {
                     if(matrix[i][j] == 1) {
-                        if(dfs(i, j, k)) sum++;
+                        if(check(i, j, k)) sum++;
                         else break;
                     }
-                    //dfs(i, j, k);
                 }
             }
         }
         return sum;
     }
     
-    private boolean dfs(int x, int y, int side) {
+    private boolean check(int x, int y, int side) {
         for(int r = x; r < x + side; r++) {
             for(int c = y; c < y + side; c++) {
                 if(r >= m || c >= n) return false;
