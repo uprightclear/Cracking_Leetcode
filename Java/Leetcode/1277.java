@@ -3,6 +3,7 @@ class Solution {
     public int countSquares(int[][] matrix) {
         int m = matrix.length;
         int n = matrix[0].length;
+        //dp[i][j]: the number of square whole right-bottom is (i, j)
         int[][] dp = new int[m][n];
         int ans = 0;
         // 预处理每一行和每一列
