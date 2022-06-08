@@ -34,3 +34,41 @@ class Solution {
         return lengthOfLIS(secondDim);
     }
 }
+
+
+class Solution {
+
+    public int lengthOfLIS(int[] nums) {
+        int len = 0;
+        int[] dp = new int[nums.length];
+        for(int i = 0; i < nums.length; i++) {
+            int l = 0, r = len;
+            while(l < r) {
+                int mid = (l + r) / 2;
+                if(dp[mid] < nums[i]) l = mid + 1;
+                else r = mid;
+            }
+            if(l >= len) len++;
+            dp[l] = nums[i];
+        }
+        return len;
+    }
+
+    public int maxEnvelopes(int[][] envelopes) {
+        // sort on increasing in first dimension and decreasing in second
+        Arrays.sort(envelopes, new Comparator<int[]>() {
+            public int compare(int[] arr1, int[] arr2) {
+                if (arr1[0] == arr2[0]) {
+                    return arr2[1] - arr1[1];
+                } else {
+                    return arr1[0] - arr2[0];
+                }
+           }
+        });
+        // extract the second dimension and run LIS
+        int[] secondDim = new int[envelopes.length];
+        for (int i = 0; i < envelopes.length; ++i) secondDim[i] = envelopes[i][1];
+        return lengthOfLIS(secondDim);
+    }
+}
+
