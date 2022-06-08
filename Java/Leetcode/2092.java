@@ -56,6 +56,7 @@ class Solution {
 
             if (rank[rootP] < rank[rootQ]) {
                 parent[rootP] = rootQ;
+                rank[rootQ]++;
             } else {
                 parent[rootQ] = rootP;
                 rank[rootP]++;
