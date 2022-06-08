@@ -1,3 +1,4 @@
+//蓄水池抽样
 class Solution {
     int[][] rects;
     public Solution(int[][] rects) {
