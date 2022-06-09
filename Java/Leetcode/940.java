@@ -2,7 +2,7 @@ class Solution {
     public int distinctSubseqII(String S) {
         int MOD = (int) 1e9 + 7;
         int N = S.length();
-        //dp[i]: the number of sub ending with index i - 1
+        //dp[i]: the number of sub till the ending with index i - 1
         int[] dp = new int[N + 1];
         dp[0] = 1;
 
