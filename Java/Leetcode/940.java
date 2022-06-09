@@ -2,6 +2,7 @@ class Solution {
     public int distinctSubseqII(String S) {
         int MOD = (int) 1e9 + 7;
         int N = S.length();
+        //dp[i]: the number of sub ending with index i - 1
         int[] dp = new int[N + 1];
         dp[0] = 1;
 
@@ -16,7 +17,7 @@ class Solution {
             dp[i + 1] %= MOD;
             last[x] = i;
         }
-
+        //减掉空字符串
         dp[N]--;
         if (dp[N] < 0) dp[N] += MOD;
         return dp[N];
