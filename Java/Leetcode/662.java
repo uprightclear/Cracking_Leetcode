@@ -9,33 +9,28 @@
  */
 class Solution {
     public int widthOfBinaryTree(TreeNode root) {
-        if (root == null) return 0;
-
-        // queue of elements [(node, col_index)]
-        LinkedList<Pair<TreeNode, Integer>> queue = new LinkedList<>();
-        Integer maxWidth = 0;
-
-        queue.addLast(new Pair<>(root, 0));
-        while (queue.size() > 0) {
-            Pair<TreeNode, Integer> head = queue.getFirst();
-
-            // iterate through the current level
+        Queue<Pair<TreeNode, Integer>> queue = new LinkedList<>();
+        int maxWidth = 0;
+        queue.offer(new Pair<>(root, 0));
+        
+        while(queue.size() != 0) {
+            Pair<TreeNode, Integer> head = queue.peek();
+            
             Integer currLevelSize = queue.size();
             Pair<TreeNode, Integer> elem = null;
-            for (int i = 0; i < currLevelSize; ++i) {
-                elem = queue.removeFirst();
+            for(int i = 0; i < currLevelSize; i++) {
+                elem = queue.poll();
                 TreeNode node = elem.getKey();
-                if (node.left != null)
-                    queue.addLast(new Pair<>(node.left, 2 * elem.getValue()));
-                if (node.right != null)
-                    queue.addLast(new Pair<>(node.right, 2 * elem.getValue() + 1));
+                if(node.left != null) {
+                    queue.offer(new Pair<>(node.left, 2 * elem.getValue()));
+                }
+                if(node.right != null) {
+                    queue.offer(new Pair<>(node.right, 2 * elem.getValue() + 1));
+                }
             }
-
-            // calculate the length of the current level,
-            //   by comparing the first and last col_index.
+            
             maxWidth = Math.max(maxWidth, elem.getValue() - head.getValue() + 1);
         }
-
         return maxWidth;
     }
 }
