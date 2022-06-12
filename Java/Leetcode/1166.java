@@ -42,7 +42,7 @@ class FileSystem {
         root = new File("");
     }
     
-    public boolean create(String path, int value) {
+    public boolean createPath(String path, int value) {
         String[] array = path.split("/");
         File cur = root;
         
