@@ -46,10 +46,10 @@ class FileSystem {
         String[] array = path.split("/");
         File cur = root;
         
-        for(int i=1;i<array.length;i++){
+        for(int i = 1; i < array.length; i++){
             String cur_name = array[i];
-            if(cur.map.containsKey(cur_name)==false){
-                if(i==array.length-1){
+            if(cur.map.containsKey(cur_name) == false){
+                if(i == array.length - 1){
                     cur.map.put(cur_name, new File(cur_name));
                 }else{
                     return false;
@@ -58,7 +58,7 @@ class FileSystem {
             cur = cur.map.get(cur_name);
         }
         
-        if(cur.val!=-1){
+        if(cur.val != -1){
             return false;
         }
         
@@ -69,9 +69,9 @@ class FileSystem {
     public int get(String path) {
         String[] array = path.split("/");
         File cur = root;
-        for(int i=1;i<array.length;i++){
+        for(int i = 1; i < array.length; i++){
             String cur_name = array[i];
-            if(cur.map.containsKey(cur_name)==false){
+            if(cur.map.containsKey(cur_name) == false){
                 return -1;
             }
             cur = cur.map.get(cur_name);
