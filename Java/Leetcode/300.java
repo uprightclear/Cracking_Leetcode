@@ -38,3 +38,26 @@ class Solution {
         return len;
     }
 }
+
+
+
+
+
+//longest non-decreasing subsequence
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int len = 0;
+        int[] dp = new int[nums.length];
+        for(int num : nums) {
+            int l = 0, r = len;
+            while(l < r) {
+                int mid = (l + r) / 2;
+                if(dp[mid] <= num) l = mid + 1;
+                else r = mid;
+            }
+            if(l >= len) len++;
+            dp[l] = num;
+        }
+        return len;
+    }
+}
