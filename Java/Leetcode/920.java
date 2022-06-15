@@ -1,7 +1,7 @@
 class Solution {
     public int numMusicPlaylists(int n, int goal, int k) {
         int MOD = (int) 1e9 + 7;
-        //dp[i][j]: the playlist counts with length of i and end with j
+        //dp[i][j]: the playlist counts with length of i and have exactly j unique songs
         long[][] dp = new long[goal + 1][n + 1];
         dp[0][0] = 1;
         for(int i = 1; i <= goal; i++) {
