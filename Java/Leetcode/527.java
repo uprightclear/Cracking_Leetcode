@@ -10,13 +10,13 @@ class Solution {
         for (int i = 0; i < N; ++i) {
             while (true) {
                 Set<Integer> dupes = new HashSet();
-                for (int j = i+1; j < N; ++j)
+                for (int j = i + 1; j < N; ++j)
                     if (ans[i].equals(ans[j]))
                         dupes.add(j);
 
                 if (dupes.isEmpty()) break;
                 dupes.add(i);
-                for (int k: dupes)
+                for (int k : dupes)
                     ans[k] = abbrev(words.get(k), ++prefix[k]);
             }
         }
@@ -26,7 +26,7 @@ class Solution {
 
     public String abbrev(String word, int i) {//保留到index i
         int N = word.length();
-        if (N - i <= 3) return word;
-        return word.substring(0, i+1) + (N - i - 2) + word.charAt(N-1);
+        if (N - i - 2 <= 1) return word;
+        return word.substring(0, i + 1) + (N - i - 2) + word.charAt(N - 1);
     }
 }
