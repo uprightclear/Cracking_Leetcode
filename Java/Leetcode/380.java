@@ -14,13 +14,13 @@ class RandomizedSet {
       if (dict.containsKey(val)) return false;
   
       dict.put(val, list.size());
-      list.add(list.size(), val);
+      list.add(val);
       return true;
     }
   
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
-      if (! dict.containsKey(val)) return false;
+      if (!dict.containsKey(val)) return false;
   
       // move the last element to the place idx of the element to delete
       int lastElement = list.get(list.size() - 1);
