@@ -102,3 +102,44 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    public int shortestPath(int[][] grid, int k) {
+        int m = grid.length;
+        int n = grid[0].length;
+        if(m == 1 && n == 1) return 0;
+        int[][] visited = new int[m][n];
+        for(int[] visit : visited) Arrays.fill(visit, -1);
+        int[][] oneCount = new int[m][n];
+        int ans = 0;
+        visited[0][0] = k;
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{0, 0});
+        int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        while(!q.isEmpty()) {
+            ans++;
+            int size = q.size();
+            for(int i = 0; i < size; i++) {
+                int[] cur = q.poll();
+                int x = cur[0];
+                int y = cur[1];
+                int one = oneCount[x][y];
+                for(int j = 0; j < 4; j++) {
+                    int nx = x + directions[j][0];
+                    int ny = y + directions[j][1];
+                    if(nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
+                    if(nx == m - 1 && ny == n - 1) return ans;
+                    if(grid[nx][ny] == 1 && one >= k) continue;
+                    int newOne = grid[nx][ny] == 1 ? one + 1 : one;
+                    if(visited[nx][ny] != -1 && visited[nx][ny] >= k - newOne) continue;
+                    else visited[nx][ny] = k - newOne;
+                    oneCount[nx][ny] = newOne;
+                    q.offer(new int[]{nx, ny});
+                }
+            }
+        }
+        return -1;
+    }
+}
