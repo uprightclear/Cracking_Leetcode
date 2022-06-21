@@ -2,7 +2,6 @@ class RangeModule {
     TreeMap<Integer, Integer> intervals = new TreeMap<>();
     
     public void addRange(int left, int right) {
-        TreeMap<Integer, Integer> test = intervals;
         Integer start = intervals.floorKey(left);
         Integer end = intervals.floorKey(right);
         if(start != null && intervals.get(start) >= left){
