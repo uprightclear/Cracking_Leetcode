@@ -11,6 +11,20 @@ class Solution {
 }
 
 
+class Solution {
+    public int countHousePlacements(int n) {
+        long[] put = new long[n+1], notPut = new long[n+1];
+        put[1] = 1;
+        notPut[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            put[i] = notPut[i-1]%1000000007;
+            notPut[i] = (notPut[i-1] + put[i-1])%1000000007;
+        }
+        return (int)((put[n]+notPut[n])*(put[n]+notPut[n])%1000000007);
+    }
+}
+
+
 // 1 -> 4 (2*2)
 // 2 -> 9 (3*3)
 // 3 -> 25 (5*5)
