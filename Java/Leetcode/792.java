@@ -1,5 +1,5 @@
 class Solution {
-    private List<List<Integer>> pos;
+    List<List<Integer>> pos;
     private boolean isMatch(String word) {
         int l = -1;
         for (char c : word.toCharArray()) {
