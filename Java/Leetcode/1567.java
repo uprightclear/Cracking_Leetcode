@@ -2,8 +2,8 @@ class Solution {
     public int getMaxLen(int[] nums) {
         int n = nums.length;
         if(n == 1) return nums[0] > 0 ? 1 : 0;
-        //dp[i][0]：以nums[i]结尾的负数乘机的最大长度
-        //dp[i][1]：以nums[i]结尾的正数乘机的最大长度
+        //dp[i][0]：以nums[i]结尾的负数乘积的最大长度
+        //dp[i][1]：以nums[i]结尾的正数乘积的最大长度
         int[][] dp = new int[n][2];
         dp[0][0] = nums[0] < 0 ? 1 : 0;
         dp[0][1] = nums[0] > 0 ? 1 : 0;
@@ -27,8 +27,8 @@ class Solution {
     public int getMaxLen(int[] nums) {
         int n = nums.length;
         if(n == 1) return nums[0] > 0 ? 1 : 0;
-        //dp[i][0]：以nums[i]结尾的负数乘机的最大长度
-        //dp[i][1]：以nums[i]结尾的正数乘机的最大长度
+        //dp[i][0]：以nums[i]结尾的负数乘积的最大长度
+        //dp[i][1]：以nums[i]结尾的正数乘积的最大长度
         //int[][] dp = new int[n][2];
         int negative = nums[0] < 0 ? 1 : 0;
         int posative = nums[0] > 0 ? 1 : 0;
