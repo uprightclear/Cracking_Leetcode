@@ -82,7 +82,6 @@ class Solution {
             if(set.contains(word.substring(0, i))) {
                 String suffix = word.substring(i);
                 if(set.contains(suffix) || dfs(suffix, set)) {
-                    set.add(word);
                     return true;
                 }
             }
