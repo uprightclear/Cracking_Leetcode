@@ -1,65 +1,3 @@
-//DFS  TLE
-class Solution {
-    //        x-1,y
-    // x,y-1  x,y    x,y+1
-    //        x+1,y
-    private int[][] direction = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
-    // 盘面上有多少行
-    private int m;
-    // 盘面上有多少列
-    private int n;
-    private String word;
-    private char[][] board;
-    private Set<String> res;
-
-    public List<String> findWords(char[][] board, String[] words) {
-        res = new HashSet<>();
-        m = board.length;
-        if (m == 0) {
-            return new ArrayList<String>(res);
-        }
-        n = board[0].length;
-        this.board = board;
-
-        for(String word : words){
-            boolean[][] marked = new boolean[m][n];
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    dfs(i, j, word, marked, 0);
-                }
-            }
-        }
-        return new ArrayList<String>(res);
-    }
-
-    private void dfs(int i, int j, String word, boolean[][] marked, int start) {
-        if (start == word.length() - 1) {
-            if(board[i][j] == word.charAt(start)){
-                res.add(word);  
-                return;
-            }
-        }
-        if (board[i][j] == word.charAt(start)) {
-            marked[i][j] = true;
-            for (int k = 0; k < 4; k++) {
-                int newX = i + direction[k][0];
-                int newY = j + direction[k][1];
-                if (inArea(newX, newY) && !marked[newX][newY]) {
-                    dfs(newX, newY, word, marked, start + 1);
-                }
-            }
-            marked[i][j] = false;
-        }
-        return;
-    }
-
-    private boolean inArea(int x, int y) {
-        return x >= 0 && x < m && y >= 0 && y < n;
-    }
-}
-
-
-
 //TrieNode
 class TrieNode {
     HashMap<Character, TrieNode> children = new HashMap<Character, TrieNode>();
@@ -140,3 +78,68 @@ class Solution {
     }
 
 }
+
+
+
+
+//DFS  TLE
+class Solution {
+    //        x-1,y
+    // x,y-1  x,y    x,y+1
+    //        x+1,y
+    private int[][] direction = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
+    // 盘面上有多少行
+    private int m;
+    // 盘面上有多少列
+    private int n;
+    private String word;
+    private char[][] board;
+    private Set<String> res;
+
+    public List<String> findWords(char[][] board, String[] words) {
+        res = new HashSet<>();
+        m = board.length;
+        if (m == 0) {
+            return new ArrayList<String>(res);
+        }
+        n = board[0].length;
+        this.board = board;
+
+        for(String word : words){
+            boolean[][] marked = new boolean[m][n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    dfs(i, j, word, marked, 0);
+                }
+            }
+        }
+        return new ArrayList<String>(res);
+    }
+
+    private void dfs(int i, int j, String word, boolean[][] marked, int start) {
+        if (start == word.length() - 1) {
+            if(board[i][j] == word.charAt(start)){
+                res.add(word);  
+                return;
+            }
+        }
+        if (board[i][j] == word.charAt(start)) {
+            marked[i][j] = true;
+            for (int k = 0; k < 4; k++) {
+                int newX = i + direction[k][0];
+                int newY = j + direction[k][1];
+                if (inArea(newX, newY) && !marked[newX][newY]) {
+                    dfs(newX, newY, word, marked, start + 1);
+                }
+            }
+            marked[i][j] = false;
+        }
+        return;
+    }
+
+    private boolean inArea(int x, int y) {
+        return x >= 0 && x < m && y >= 0 && y < n;
+    }
+}
+
+
