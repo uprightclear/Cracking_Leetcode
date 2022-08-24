@@ -34,6 +34,8 @@ class Solution {
     }
 }
 
+
+//https://leetcode.com/problems/sum-of-subarray-minimums/discuss/170769/Java-O(n)-monotone-stack-with-DP
 class Solution {
     public int sumSubarrayMins(int[] A) {
         Stack<Integer> stack = new Stack<>();
