@@ -41,3 +41,46 @@ class SORTracker {
  * obj.add(name,score);
  * String param_2 = obj.get();
  */
+
+
+class SORTracker {
+    class Node{
+        String name;
+        int score;
+        
+        public Node(String n, int s){
+            this.name = n;
+            this.score = s;
+        }
+    }
+    PriorityQueue<Node> max;
+    PriorityQueue<Node> min;
+    
+    public SORTracker() {
+        min = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node o1, Node o2) {
+                return o1.score == o2.score ? o2.name.compareTo(o1.name) : o1.score - o2.score;
+            }
+        });
+        
+        max = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node o1, Node o2) {
+                return o1.score == o2.score ? o1.name.compareTo(o2.name) : o2.score - o1.score;
+            }
+        });
+    }
+
+    public void add(String name, int score) {
+        min.add(new Node(name, score));
+        Node lameOne = min.poll();
+        max.add(lameOne);
+    }
+
+    public String get() {
+        Node bestOne = max.poll();
+        min.add(bestOne);
+        return min.peek().name;
+    }
+}
