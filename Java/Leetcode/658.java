@@ -13,3 +13,23 @@ class Solution {
         return res;
     }
 }
+
+
+
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> {
+            return Math.abs(b - x) == Math.abs(a - x) ? b - a : Math.abs(b - x) - Math.abs(a - x);
+        });
+        for(int i : arr) {
+            pq.offer(i);
+            if(pq.size() > k) pq.poll();
+        }
+        List<Integer> ans = new ArrayList<>();
+        while(!pq.isEmpty()) {
+            ans.add(pq.poll());
+        }
+        Collections.sort(ans);
+        return ans;
+    }
+}
