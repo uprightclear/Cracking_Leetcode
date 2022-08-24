@@ -43,7 +43,7 @@ class Solution {
         addLeaves(node.right);
     }
     
-        public void addRight(TreeNode node) {
+    public void addRight(TreeNode node) {
         if(node == null) return;
         if(node.right != null) {
             addRight(node.right);
