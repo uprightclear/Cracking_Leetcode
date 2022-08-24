@@ -57,18 +57,11 @@ class SORTracker {
     PriorityQueue<Node> min;
     
     public SORTracker() {
-        min = new PriorityQueue<>(new Comparator<Node>() {
-            @Override
-            public int compare(Node o1, Node o2) {
-                return o1.score == o2.score ? o2.name.compareTo(o1.name) : o1.score - o2.score;
-            }
+        min = new PriorityQueue<>((a, b) -> {
+            return a.score == b.score ? b.name.compareTo(a.name) : a.score - b.score;
         });
-        
-        max = new PriorityQueue<>(new Comparator<Node>() {
-            @Override
-            public int compare(Node o1, Node o2) {
-                return o1.score == o2.score ? o1.name.compareTo(o2.name) : o2.score - o1.score;
-            }
+        max = new PriorityQueue<>((a, b) -> {
+            return a.score == b.score ? a.name.compareTo(b.name) : b.score - a.score;
         });
     }
 
