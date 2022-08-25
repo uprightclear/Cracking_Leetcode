@@ -1,33 +1,36 @@
 class Solution {
-    public int smallestDistancePair(int[] nums, int k) {
-        Arrays.sort(nums);
-        int n = nums.length, left = 0, right = nums[n - 1] - nums[0];
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            int cnt = 0;
-            for (int j = 0; j < n; j++) {
-                int i = binarySearch(nums, j, nums[j] - mid);
-                cnt += j - i;
-            }
-            if (cnt >= k) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
+    // Returns number of pairs with absolute difference less than or equal to mid.
+    private int countPairs(int[] a, int mid) {
+        int n = a.length, res = 0;
+        for (int i = 0; i < n; ++i) {
+            int j = i;
+            while (j < n && a[j] - a[i] <= mid) j++;
+            res += j - i - 1;
         }
-        return left;
+        return res;
     }
 
-    public int binarySearch(int[] nums, int end, int target) {
-        int left = 0, right = end;
-        while (left < right) {
-            int mid = (left + right) / 2;
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else {
-                right = mid;
-            }
+    public int smallestDistancePair(int a[], int k) {
+        int n = a.length;
+        Arrays.sort(a);
+
+        // Minimum absolute difference
+        int low = a[1] - a[0];
+        for (int i = 1; i < n - 1; i++)
+            low = Math.min(low, a[i + 1] - a[i]);
+
+        // Maximum absolute difference
+        int high = a[n - 1] - a[0];
+
+        // Do binary search for k-th absolute difference
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (countPairs(a, mid) < k)
+                low = mid + 1;
+            else
+                high = mid;
         }
-        return left;
+
+        return low;
     }
 }
