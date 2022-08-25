@@ -3,7 +3,7 @@ class Solution {
     private int countPairs(int[] a, int mid) {
         int n = a.length, res = 0;
         for (int i = 0; i < n; ++i) {
-            int j = i;
+            int j = i + 1;
             while (j < n && a[j] - a[i] <= mid) j++;
             res += j - i - 1;
         }
