@@ -16,7 +16,8 @@ class Solution {
         int ans = bfs();
         return ans;
     }
-    int bfs() {
+
+    public int bfs() {
         Queue<Integer> d = new LinkedList<>();
         Map<Integer, Integer> m = new HashMap<>();
         d.offer(1);
