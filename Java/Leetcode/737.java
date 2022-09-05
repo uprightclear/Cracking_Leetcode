@@ -1,4 +1,46 @@
 class Solution {
+    public boolean areSentencesSimilarTwo(String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {
+        if(sentence1.length != sentence2.length) return false;
+        Map<String, Integer> map = new HashMap<>();
+        int count = 0;
+        UF uf = new UF(similarPairs.size() * 2);
+        for(List<String> pair : similarPairs) {
+            for(String p : pair) {
+                if(!map.containsKey(p)) map.put(p, count++);
+            }
+            uf.union(map.get(pair.get(0)), map.get(pair.get(1)));
+        }
+        for(int i = 0; i < sentence1.length; i++) {
+            String w1 = sentence1[i], w2 = sentence2[i];
+            if(w1.equals(w2)) continue;
+            if(!map.containsKey(w1) || !map.containsKey(w2) || uf.find(map.get(w1)) != uf.find(map.get(w2))) return false;
+        }
+        return true;
+    }
+}
+
+class UF {
+    int[] parent;
+    public UF(int n) {
+        parent = new int[n];
+        for(int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+    }
+    
+    public int find(int x) {
+        if(parent[x] != x) parent[x] = find(parent[x]);
+        return parent[x];
+    }
+    
+    public void union(int x, int y) {
+        parent[find(x)] = find(y);
+    }
+}
+
+
+
+lass Solution {
     public boolean areSentencesSimilarTwo(
         String[] words1, String[] words2, String[][] pairs) {
         if (words1.length != words2.length) return false;
@@ -34,47 +76,5 @@ class Solution {
             }
         }
         return true;
-    }
-}
-
-
-//Union-Find
-class Solution {
-    public boolean areSentencesSimilarTwo(String[] words1, String[] words2, String[][] pairs) {
-        if (words1.length != words2.length) return false;
-        Map<String, Integer> index = new HashMap();
-        int count = 0;
-        DSU dsu = new DSU(2 * pairs.length);
-        for (String[] pair: pairs) {
-            for (String p: pair) if (!index.containsKey(p)) {
-                index.put(p, count++);
-            }
-            dsu.union(index.get(pair[0]), index.get(pair[1]));
-        }
-
-        for (int i = 0; i < words1.length; ++i) {
-            String w1 = words1[i], w2 = words2[i];
-            if (w1.equals(w2)) continue;
-            if (!index.containsKey(w1) || !index.containsKey(w2) ||
-                    dsu.find(index.get(w1)) != dsu.find(index.get(w2)))
-                return false;
-        }
-        return true;
-    }
-}
-
-class DSU {
-    int[] parent;
-    public DSU(int N) {
-        parent = new int[N];
-        for (int i = 0; i < N; ++i)
-            parent[i] = i;
-    }
-    public int find(int x) {
-        if (parent[x] != x) parent[x] = find(parent[x]);
-        return parent[x];
-    }
-    public void union(int x, int y) {
-        parent[find(x)] = find(y);
     }
 }
