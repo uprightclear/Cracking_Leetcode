@@ -40,41 +40,38 @@ class UF {
 
 
 
-lass Solution {
-    public boolean areSentencesSimilarTwo(
-        String[] words1, String[] words2, String[][] pairs) {
-        if (words1.length != words2.length) return false;
-        Map<String, List<String>> graph = new HashMap();
-        for (String[] pair: pairs) {
-            for (String p: pair) if (!graph.containsKey(p)) {
-                graph.put(p, new ArrayList());
-            }
-            graph.get(pair[0]).add(pair[1]);
-            graph.get(pair[1]).add(pair[0]);
+class Solution {
+    public boolean areSentencesSimilarTwo(String[] words1, String[] words2, String[][] pairs) {
+        if (words1.length != words2.length) {
+            return false;
         }
-
-        for (int i = 0; i < words1.length; ++i) {
-            String w1 = words1[i], w2 = words2[i];
-            Stack<String> stack = new Stack();
-            Set<String> seen = new HashSet();
-            stack.push(w1);
-            seen.add(w1);
-            search: {
-                while (!stack.isEmpty()) {
-                    String word = stack.pop();
-                    if (word.equals(w2)) break search;
-                    if (graph.containsKey(word)) {
-                        for (String nei: graph.get(word)) {
-                            if (!seen.contains(nei)) {
-                                stack.push(nei);
-                                seen.add(nei);
-                            }
-                        }
-                    }
-                }
-                return false;
-            }
+        
+        Map<String, Set<String>> graph = new HashMap<>();
+        for (String[] p : pairs) {
+            graph.putIfAbsent(p[0], new HashSet<>());
+            graph.putIfAbsent(p[1], new HashSet<>());
+            graph.get(p[0]).add(p[1]);
+            graph.get(p[1]).add(p[0]);
         }
+        
+        for (int i = 0; i < words1.length; i++) {
+            if (words1[i].equals(words2[i])) continue;           
+            if (!graph.containsKey(words1[i])) return false;            
+            if (!dfs(graph, words1[i], words2[i], new HashSet<>())) return false;
+        }
+        
         return true;
+    }
+    
+    private boolean dfs(Map<String, Set<String>> graph, String source, String target, Set<String> visited) {
+        if (graph.get(source).contains(target)) return true;
+        
+        if (visited.add(source)) {
+            for (String next : graph.get(source)) {
+                if (!visited.contains(next) && dfs(graph, next, target, visited)) 
+                    return true;
+            }
+        }
+        return false;
     }
 }
