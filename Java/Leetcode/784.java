@@ -10,10 +10,14 @@ class Solution {
             res.add(new String(s));
             return;
         }
+        if(!Character.isLetter(s[begin])) {
+            dfs(s, begin + 1, res);
+            return;
+        }
+        s[begin] = Character.toLowerCase(s[begin]);
         dfs(s, begin + 1, res);
-        if(!Character.isLetter(s[begin])) return;
-        s[begin] ^= 1 << 5;
+        
+        s[begin] = Character.toUpperCase(s[begin]);
         dfs(s, begin + 1, res);
-        s[begin] ^= 1 << 5;
     }
 }
