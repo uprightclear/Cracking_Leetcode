@@ -56,3 +56,24 @@ class Solution {
         return res;
     }
 }
+
+
+class Solution {
+    public int pathSum(TreeNode root, int targetSum) {
+        Map<Long, Integer> map = new HashMap<>();
+        map.put(0L, 1);
+        return dfs(root, map, targetSum, 0);
+    }
+    
+    public int dfs(TreeNode node, Map<Long, Integer> map, int target, long cur) {
+        if(node == null) return 0;
+        int res = 0;
+        cur += node.val;
+        res += map.getOrDefault(cur - target, 0);
+        map.put(cur, map.getOrDefault(cur, 0) + 1);
+        res += dfs(node.left, map, target, cur);
+        res += dfs(node.right, map, target, cur);
+        map.put(cur, map.get(cur) - 1);
+        return res;
+    }
+}
