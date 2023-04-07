@@ -1,6 +1,6 @@
 class Solution {
     public String alienOrder(String[] words) {
-        int[] indegree = new int[26];
+        int[] indegree = new int[26];//深度，字典序越靠后深度越大
         Map<Character, Set<Character>> map = new HashMap<>();
         buildGraph(map, words, indegree);
         return bfs(map, indegree);
@@ -15,7 +15,7 @@ class Solution {
         for(int i = 1; i < words.length; i++) {
             String first = words[i - 1];
             String second = words[i];
-            if(first.startsWith(second) && first.length() > second.length()) {
+            if(first.startsWith(second) && first.length() > second.length()) {//wrong case
                 map.clear();
                 return;
             }
