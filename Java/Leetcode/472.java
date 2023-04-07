@@ -66,7 +66,7 @@ class TrieNode {
 }
 
 
-
+//TLE
 class Solution {
     public List<String> findAllConcatenatedWordsInADict(String[] words) {
         Set<String> set = new HashSet<>(Arrays.asList(words));
