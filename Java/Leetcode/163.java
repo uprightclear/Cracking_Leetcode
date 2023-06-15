@@ -1,22 +1,19 @@
 class Solution {
-    public List<String> findMissingRanges(int[] nums, int lower, int upper) {
-        List<String> result = new ArrayList<>();
-        int prev = lower - 1;
-        for (int i = 0; i <= nums.length; i++) {
-            int curr = (i < nums.length) ? nums[i] : upper + 1;
-            if (prev + 1 <= curr - 1) {
-                result.add(formatRange(prev + 1, curr - 1));
+    public List<List<Integer>> findMissingRanges(int[] nums, int lower, int upper) {
+        int start = lower;
+        List<List<Integer>> bucket = new ArrayList<>();
+        
+        for(int num : nums){
+            if(start < num){
+            bucket.add(Arrays.asList(start, num - 1));
             }
-            prev = curr;
+            start = num + 1;
         }
-        return result;
-    }
 
-    // formats range in the requested format
-    private String formatRange(int lower, int upper) {
-        if (lower == upper) {
-            return String.valueOf(lower);
+        if(start <= upper){
+            bucket.add(Arrays.asList(start, upper));
         }
-        return lower + "->" + upper;
+
+        return bucket;
     }
 }
