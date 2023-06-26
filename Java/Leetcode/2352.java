@@ -16,3 +16,21 @@ class Solution {
         return ans;
     }
 }
+
+class Solution {
+    public int equalPairs(int[][] grid) {
+        int n = grid.length, ans = 0;
+        Map<String,Integer> cnt = new HashMap<>();
+        for(int i = 0; i < n; i++){
+            String t1 = "";
+            for(int j = 0; j < n; j++) t1 += "$" + grid[i][j];
+            cnt.put(t1, cnt.getOrDefault(t1, 0) + 1);
+        }
+        for(int i = 0;i < n; i++){
+            String t2 = "";
+            for(int j = 0; j < n; j++) t2 += "$" + grid[j][i];
+            ans += cnt.getOrDefault(t2, 0);
+        }
+        return ans;
+    }
+}
