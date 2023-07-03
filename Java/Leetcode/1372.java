@@ -21,7 +21,7 @@ class Solution {
         return max;
     }
     
-    public void path(TreeNode node, int depth, boolean direction) { // true: right. false: false
+    public void path(TreeNode node, int depth, boolean direction) { // true: right. false: left
         max = Math.max(max, depth);
         if(node == null) return;
         path(node.left, direction ? depth + 1 : 0, false);
