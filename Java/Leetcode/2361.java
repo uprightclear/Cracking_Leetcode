@@ -8,7 +8,7 @@ class Solution {
       minCostReg[0] = 0;
       minCostExp[0] = switchingCost;
         
-      for (int i = 0; i<regular.length; i++)  
+      for (int i = 0; i < regular.length; i++)  
       {     
            ans[i] = 
                 Math.min(
@@ -16,13 +16,13 @@ class Solution {
                     (minCostExp[i] + express[i]) // Going from prev express stop to cur express
                 );
           
-          minCostReg[i+1] = Math.min(
+          minCostReg[i + 1] = Math.min(
               minCostReg[i] + regular[i], // going from previous reg to cur reg
               minCostExp[i] + express[i]  // going from previous exp to cur expr stop and then switching lanes to reg
           );
 
-          minCostExp[i+1] = Math.min(
-              minCostReg[i+1] + switchingCost, // reaching cur reg stop and switching to express
+          minCostExp[i + 1] = Math.min(
+              minCostReg[i + 1] + switchingCost, // reaching cur reg stop and switching to express
               minCostExp[i] + express[i] // moving from previous exp to cur expres
           );    
       }
