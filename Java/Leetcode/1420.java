@@ -5,6 +5,7 @@ class Solution {
     int m;
     
     public int numOfArrays(int n, int m, int k) {
+        //memo[i][j][k]: i: current index, j: maxSoFar, k: remain comparition
         memo = new int[n][m + 1][k + 1];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= m; j++) {
