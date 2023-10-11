@@ -4,9 +4,7 @@ class Solution {
         int ans = nums.size();
         int i = 0, j = (len + 1) / 2;
         while(i < len / 2 && j < len) {
-            if(nums.get(i) < nums.get(j)) ans -= 2;
-            i++;
-            j++;
+            if(nums.get(i++) < nums.get(j++)) ans -= 2;
         }
         return ans;
     }
