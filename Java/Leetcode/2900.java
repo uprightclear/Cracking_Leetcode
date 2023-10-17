@@ -11,7 +11,7 @@ class Solution {
         for (int i = 1; i < groups.length; i++) {
             for (int j = 0; j < i; j++) {
                 if (groups[i] == groups[j]) continue;
-                if (words[i].length() != words[i].length()) continue;
+                if (words[i].length() != words[j].length()) continue;
 
                 // int diff = 0;
                 // for (int k = 0; k < words[i].length(); k++) {
