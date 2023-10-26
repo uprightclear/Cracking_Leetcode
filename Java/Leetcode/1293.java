@@ -110,6 +110,7 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
         if(m == 1 && n == 1) return 0;
+        //how many elimination remain
         int[][] visited = new int[m][n];
         for(int[] visit : visited) Arrays.fill(visit, -1);
         int[][] oneCount = new int[m][n];
