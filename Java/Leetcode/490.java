@@ -28,3 +28,32 @@ class Solution {
         return false;
     }
 }
+
+
+class Solution {
+    int[][] directions = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    boolean[][] visited;
+    int m, n;
+    public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+        m = maze.length;
+        n = maze[0].length;
+        visited = new boolean[m][n];
+        return dfs(maze, start[0], start[1], destination);
+    }
+
+    public boolean dfs(int[][] maze, int row, int col, int[] destination) {
+        if(visited[row][col]) return false;
+        if(row == destination[0] && col == destination[1]) return true;
+        visited[row][col] = true;
+        for(int[] dir : directions) {
+            int newRow = row;
+            int newCol = col;
+            while(newRow + dir[0] < m && newRow + dir[0] >= 0 && newCol + dir[1] < n && newCol + dir[1] >= 0 && maze[newRow + dir[0]][newCol + dir[1]] != 1) {
+                newRow += dir[0];
+                newCol += dir[1];
+            }
+            if(dfs(maze, newRow, newCol, destination)) return true;
+        }
+        return false;
+    }
+}
