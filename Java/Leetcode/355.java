@@ -1,179 +1,133 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Set;
+class Twitter {
+	private static int timeStamp=0;
 
-public class Twitter {
+	// easy to find if user exist
+	private Map<Integer, User> userMap;
 
-    /**
-     * 用户 id 和推文（单链表）的对应关系
-     */
-    private Map<Integer, Tweet> twitter;
+	// Tweet link to next Tweet so that we can save a lot of time
+	// when we execute getNewsFeed(userId)
+	private class Tweet{
+		public int id;
+		public int time;
+		public Tweet next;
 
-    /**
-     * 用户 id 和他关注的用户列表的对应关系
-     */
-    private Map<Integer, Set<Integer>> followings;
-
-    /**
-     * 全局使用的时间戳字段，用户每发布一条推文之前 + 1
-     */
-    private static int timestamp = 0;
-
-    /**
-     * 合并 k 组推文使用的数据结构（可以在方法里创建使用），声明成全局变量非必需，视个人情况使用
-     */
-    private static PriorityQueue<Tweet> maxHeap;
-
-    /**
-     * Initialize your data structure here.
-     */
-    public Twitter() {
-        followings = new HashMap<>();
-        twitter = new HashMap<>();
-        maxHeap = new PriorityQueue<>((o1, o2) -> -o1.timestamp + o2.timestamp);
-    }
-
-    /**
-     * Compose a new tweet.
-     */
-    public void postTweet(int userId, int tweetId) {
-        timestamp++;
-        if (twitter.containsKey(userId)) {
-            Tweet oldHead = twitter.get(userId);
-            Tweet newHead = new Tweet(tweetId, timestamp);
-            newHead.next = oldHead;
-            twitter.put(userId, newHead);
-        } else {
-            twitter.put(userId, new Tweet(tweetId, timestamp));
-        }
-    }
-
-    /**
-     * Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
-     */
-    public List<Integer> getNewsFeed(int userId) {
-        // 由于是全局使用的，使用之前需要清空
-        maxHeap.clear();
-
-        // 如果自己发了推文也要算上
-        if (twitter.containsKey(userId)) {
-            maxHeap.offer(twitter.get(userId));
-        }
-
-        Set<Integer> followingList = followings.get(userId);
-        if (followingList != null && followingList.size() > 0) {
-            for (Integer followingId : followingList) {
-                Tweet tweet = twitter.get(followingId);
-                if (tweet != null) {
-                    maxHeap.offer(tweet);
-                }
-            }
-        }
-
-        List<Integer> res = new ArrayList<>(10);
-        int count = 0;
-        while (!maxHeap.isEmpty() && count < 10) {
-            Tweet head = maxHeap.poll();
-            res.add(head.id);
-
-            // 这里最好的操作应该是 replace，但是 Java 没有提供
-            if (head.next != null) {
-                maxHeap.offer(head.next);
-            }
-            count++;
-        }
-        return res;
-    }
+		public Tweet(int id){
+			this.id = id;
+			time = timeStamp++;
+			next=null;
+		}
+	}
 
 
-    /**
-     * Follower follows a followee. If the operation is invalid, it should be a no-op.
-     *
-     * @param followerId 发起关注者 id
-     * @param followeeId 被关注者 id
-     */
-    public void follow(int followerId, int followeeId) {
-        // 被关注人不能是自己
-        if (followeeId == followerId) {
-            return;
-        }
+	// OO design so User can follow, unfollow and post itself
+	public class User{
+		public int id;
+		public Set<Integer> followed;
+		public Tweet tweet_head;
 
-        // 获取我自己的关注列表
-        Set<Integer> followingList = followings.get(followerId);
-        if (followingList == null) {
-            Set<Integer> init = new HashSet<>();
-            init.add(followeeId);
-            followings.put(followerId, init);
-        } else {
-            if (followingList.contains(followeeId)) {
-                return;
-            }
-            followingList.add(followeeId);
-        }
-    }
+		public User(int id){
+			this.id = id;
+			followed = new HashSet<>();
+			follow(id); // first follow itself
+			tweet_head = null;
+		}
+
+		public void follow(int id){
+			followed.add(id);
+		}
+
+		public void unfollow(int id){
+			followed.remove(id);
+		}
 
 
-    /**
-     * Follower unfollows a followee. If the operation is invalid, it should be a no-op.
-     *
-     * @param followerId 发起取消关注的人的 id
-     * @param followeeId 被取消关注的人的 id
-     */
-    public void unfollow(int followerId, int followeeId) {
-        if (followeeId == followerId) {
-            return;
-        }
+		// everytime user post a new tweet, add it to the head of tweet list.
+		public void post(int id){
+			Tweet t = new Tweet(id);
+			t.next=tweet_head;
+			tweet_head=t;
+		}
+	}
 
-        // 获取我自己的关注列表
-        Set<Integer> followingList = followings.get(followerId);
 
-        if (followingList == null) {
-            return;
-        }
-        // 这里删除之前无需做判断，因为查找是否存在以后，就可以删除，反正删除之前都要查找
-        followingList.remove(followeeId);
-    }
 
-    /**
-     * 推文类，是一个单链表（结点视角）
-     */
-    private class Tweet {
-        /**
-         * 推文 id
-         */
-        private int id;
 
-        /**
-         * 发推文的时间戳
-         */
-        private int timestamp;
-        private Tweet next;
+	/** Initialize your data structure here. */
+	public Twitter() {
+		userMap = new HashMap<Integer, User>();
+	}
 
-        public Tweet(int id, int timestamp) {
-            this.id = id;
-            this.timestamp = timestamp;
-        }
-    }
+	/** Compose a new tweet. */
+	public void postTweet(int userId, int tweetId) {
+		if(!userMap.containsKey(userId)){
+			User u = new User(userId);
+			userMap.put(userId, u);
+		}
+		userMap.get(userId).post(tweetId);
 
-    public static void main(String[] args) {
+	}
 
-        Twitter twitter = new Twitter();
-        twitter.postTweet(1, 1);
-        List<Integer> res1 = twitter.getNewsFeed(1);
-        System.out.println(res1);
 
-        twitter.follow(2, 1);
 
-        List<Integer> res2 = twitter.getNewsFeed(2);
-        System.out.println(res2);
+	// Best part of this.
+	// first get all tweets lists from one user including itself and all people it followed.
+	// Second add all heads into a max heap. Every time we poll a tweet with 
+	// largest time stamp from the heap, then we add its next tweet into the heap.
+	// So after adding all heads we only need to add 9 tweets at most into this 
+	// heap before we get the 10 most recent tweet.
+	public List<Integer> getNewsFeed(int userId) {
+		List<Integer> res = new LinkedList<>();
 
-        twitter.unfollow(2, 1);
+		if(!userMap.containsKey(userId))   return res;
 
-        List<Integer> res3 = twitter.getNewsFeed(2);
-        System.out.println(res3);
-    }
+		Set<Integer> users = userMap.get(userId).followed;
+		PriorityQueue<Tweet> q = new PriorityQueue<Tweet>(users.size(), (a, b)->(b.time - a.time));
+		for(int user : users){
+			Tweet t = userMap.get(user).tweet_head;
+			// very imporant! If we add null to the head we are screwed.
+			if(t != null){
+				q.add(t);
+			}
+		}
+		int n = 0;
+		while(!q.isEmpty() && n < 10){
+		  Tweet t = q.poll();
+		  res.add(t.id);
+		  n++;
+		  if(t.next != null)
+			q.add(t.next);
+		}
+
+		return res;
+
+	}
+
+	/** Follower follows a followee. If the operation is invalid, it should be a no-op. */
+	public void follow(int followerId, int followeeId) {
+		if(!userMap.containsKey(followerId)){
+			User u = new User(followerId);
+			userMap.put(followerId, u);
+		}
+		if(!userMap.containsKey(followeeId)){
+			User u = new User(followeeId);
+			userMap.put(followeeId, u);
+		}
+		userMap.get(followerId).follow(followeeId);
+	}
+
+	/** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
+	public void unfollow(int followerId, int followeeId) {
+		if(!userMap.containsKey(followerId) || followerId==followeeId)
+			return;
+		userMap.get(followerId).unfollow(followeeId);
+	}
 }
+
+/**
+ * Your Twitter object will be instantiated and called as such:
+ * Twitter obj = new Twitter();
+ * obj.postTweet(userId,tweetId);
+ * List<Integer> param_2 = obj.getNewsFeed(userId);
+ * obj.follow(followerId,followeeId);
+ * obj.unfollow(followerId,followeeId);
+ */
