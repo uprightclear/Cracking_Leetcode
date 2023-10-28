@@ -2,7 +2,7 @@ class Solution {
     Map<Integer, Integer> m = new HashMap<>();
     int[][] dp;
 
-    //dp[i][k]: whether we can jump to the end with status: current index = 1, preJump = k;
+    //dp[i][k]: whether we can jump to the end with status: current index = i, preJump = k;
     //1: True, 0: False, -1: Haven't been checked
     boolean solve(int i, int k, int[] stones) {
         if (i == stones.length - 1) {
