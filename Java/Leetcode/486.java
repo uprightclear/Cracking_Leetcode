@@ -27,7 +27,7 @@ class Solution {
     }
 
     // Main function to predict if the first player can win the game
-    public boolean PredictTheWinner(int[] nums) {
+    public boolean predictTheWinner(int[] nums) {
         int n = nums.length;
         
         // Initialize the dp table with -1 (uninitialized) values
