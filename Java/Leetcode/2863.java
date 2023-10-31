@@ -4,7 +4,7 @@ class Solution {
         Deque<int[]> stack = new LinkedList<>();
         
         for(int i = 0; i < n; i++) {
-            if(stack.isEmpty() || stack.peek()[0] < nums[i]) stack.add(new int[] {nums[i], i});
+            if(stack.isEmpty() || stack.peek()[0] < nums[i]) stack.push(new int[] {nums[i], i});
         }
       
         int res = 0;
