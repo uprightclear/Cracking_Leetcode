@@ -7,7 +7,7 @@ class Solution {
         }
 
         int[][] dp = new int[k + 1][2];
-        for(int i = 0; i <=k; i++){
+        for(int i = 0; i <= k; i++){
             dp[i][1] = Integer.MIN_VALUE;
         }
         for(int price : prices){
