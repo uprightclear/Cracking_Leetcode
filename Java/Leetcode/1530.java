@@ -53,3 +53,49 @@ class Pair {
         this.count = count;
     }
 }
+
+
+class Solution {
+    HashMap<TreeNode, ArrayList<TreeNode>> hash = new HashMap<>();
+    List<TreeNode> leaf = new ArrayList<>();
+    int count = 0; 
+    public int countPairs(TreeNode root, int distance) {
+        graph(root, null);
+        for(TreeNode t: leaf){
+            HashSet<TreeNode> visited = new HashSet<>();
+            visited.add(t);
+            check(t, hash, distance, visited);
+        }
+        
+        return count/2;
+        
+    }
+    
+    public void check(TreeNode t, HashMap<TreeNode, ArrayList<TreeNode>> hash, int d, HashSet<TreeNode> visit){
+        if(d <= 0 || t == null) return;
+        for(TreeNode k: hash.get(t)){
+             if(visit.contains(k)) continue;
+             visit.add(k);
+             if(leaf.contains(k)) count++;
+             check(k, hash, d-1, visit);
+             visit.remove(k);
+        }
+    }
+    
+    
+    public void graph(TreeNode root, TreeNode parent){
+        if(root == null) return;
+        if(hash.get(root) == null){
+            hash.put(root, new ArrayList<TreeNode>());
+        }
+        ArrayList<TreeNode> li = hash.get(root);
+        if(root.left !=null) li.add(root.left);
+        if(root.right!=null) li.add(root.right);
+        if(parent!=null) li.add(parent);
+        if(root.left == null && root.right == null) leaf.add(root);
+        graph(root.left, root);
+        graph(root.right, root);
+            
+        }
+        
+    }
