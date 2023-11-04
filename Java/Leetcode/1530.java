@@ -78,7 +78,7 @@ class Solution {
              visit.add(k);
              if(leaf.contains(k)) count++;
              check(k, hash, d-1, visit);
-             visit.remove(k);
+             //visit.remove(k);
         }
     }
     
