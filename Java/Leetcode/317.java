@@ -1,4 +1,4 @@
-public class Solution {
+class Solution {
     public int shortestDistance(int[][] grid) {
         if (grid == null || grid[0].length == 0) return 0;
         final int[] shift = new int[] {0, 1, 0, -1, 0};
