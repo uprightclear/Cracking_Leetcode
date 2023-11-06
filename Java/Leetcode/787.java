@@ -108,3 +108,40 @@ class Solution {
         return ans == Long.MAX_VALUE ? -1 : (int) ans;
     }
 }
+
+
+
+class Solution {
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        Map<Integer,List<int[]>> map = new HashMap<>();
+        for(int[] flight : flights){
+            int s = flight[0];
+            int e = flight[1];
+            int c = flight[2];
+            map.putIfAbsent(s, new ArrayList<>());
+            map.get(s).add(new int[]{e, c});
+        }
+        int[] cost = new int[n];
+        Arrays.fill(cost, Integer.MAX_VALUE);
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{src, 0});
+        int stop = 0;
+        while(stop <= k && !queue.isEmpty()){
+            int size = queue.size();
+            for(int i = 0; i < size; i++){
+                int[] temp = queue.poll();
+                if(!map.containsKey(temp[0])) continue;
+                for(int[] array : map.get(temp[0])){
+                    int ticket = array[1];
+                    int dest = array[0];
+                    if(temp[1] + ticket > cost[dest]) continue;
+                    cost[dest] = temp[1] + ticket;
+                    queue.offer(new int[]{dest, cost[dest]});
+                }
+            }
+            stop++;
+        }
+    return cost[dst] < Integer.MAX_VALUE ? cost[dst] : -1; 
+        
+    }
+}
