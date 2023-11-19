@@ -60,3 +60,28 @@ class Solution {
         return res >= 0 && res <= 255;
     }
 }
+
+class Solution {
+    public List<String> restoreIpAddresses(String s) {
+        List<String> ans = new ArrayList<>();
+        dfs(ans, s, 0, 4);
+        return ans;
+        
+    }
+    public void dfs(List<String> ans, String s, int start, int dot){
+        if(dot == 0){
+            if(start == s.length()){
+                ans.add(s.substring(0,s.length() - 1));
+            }
+            return;
+        }
+        if(dot < 0 || start >= s.length()) return;
+        for(int i = start; i < Math.min(start + 3, s.length()); i++){
+            int val = Integer.valueOf(s.substring(start, i + 1));
+            if(val >= 0 && val <= 255){
+                if((val == 0 && i != start) || val > 0 && s.charAt(start)=='0') continue;
+                dfs(ans, s.substring(0, i + 1) + "." + s.substring(i + 1), i + 2, dot - 1);
+            }
+        }
+    }
+}
