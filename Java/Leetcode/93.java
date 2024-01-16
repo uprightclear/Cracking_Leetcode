@@ -71,7 +71,7 @@ class Solution {
     public void dfs(List<String> ans, String s, int start, int dot){
         if(dot == 0){
             if(start == s.length()){
-                ans.add(s.substring(0,s.length() - 1));
+                ans.add(s.substring(0, s.length() - 1));
             }
             return;
         }
